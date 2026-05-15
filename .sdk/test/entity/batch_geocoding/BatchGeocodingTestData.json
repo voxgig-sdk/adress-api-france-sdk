@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "batch_geocoding": {
+      "BATCH_GEOCODING00": {},
+      "BATCH_GEOCODING01": {},
+      "BATCH_GEOCODING02": {}
+    }
+  },
+  "new": {
+    "batch_geocoding": {
+      "batch_geocoding_ref01": {}
+    }
+  }
+}

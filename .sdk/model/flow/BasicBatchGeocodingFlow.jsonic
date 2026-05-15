@@ -1,0 +1,18 @@
+# BasicBatchGeocodingFlow
+
+main: kit: flow: BasicBatchGeocodingFlow:
+{
+  entity: "batch_geocoding",
+  kind: "basic",
+  name: "BasicBatchGeocodingFlow",
+  step: [
+    {
+      input: {
+        ref: "batch_geocoding_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicBatchGeocodingFlow"
+}

@@ -1,0 +1,581 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "French Address API",
+    "description": "Official French address validation service. It provides endpoints for both forward and reverse geocoding, as well as the ability to perform batch geocoding from CSV files.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "French Address API",
+      "url": "https://adresse.data.gouv.fr/api-doc/adresse"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api-adresse.data.gouv.fr",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/search": {
+      "get": {
+        "summary": "Forward geocoding",
+        "description": "Search for an address and get coordinates (latitude/longitude). This endpoint performs forward geocoding by converting a text address into geographic coordinates.",
+        "operationId": "searchAddress",
+        "tags": [
+          "Geocoding"
+        ],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The address to search for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "8 bd du port"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of results to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 5,
+              "minimum": 1,
+              "maximum": 20
+            }
+          },
+          {
+            "name": "autocomplete",
+            "in": "query",
+            "description": "Enable autocomplete mode",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ],
+              "default": 1
+            }
+          },
+          {
+            "name": "lat",
+            "in": "query",
+            "description": "Latitude for geographic priority",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "float",
+              "minimum": -90,
+              "maximum": 90
+            }
+          },
+          {
+            "name": "lon",
+            "in": "query",
+            "description": "Longitude for geographic priority",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "float",
+              "minimum": -180,
+              "maximum": 180
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Filter by type of result",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "housenumber",
+                "street",
+                "locality",
+                "municipality"
+              ]
+            }
+          },
+          {
+            "name": "postcode",
+            "in": "query",
+            "description": "Filter by postal code",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "citycode",
+            "in": "query",
+            "description": "Filter by INSEE city code",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with matching addresses",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "example": "FeatureCollection"
+                    },
+                    "version": {
+                      "type": "string",
+                      "example": "draft"
+                    },
+                    "features": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "example": "Feature"
+                          },
+                          "geometry": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "example": "Point"
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "number"
+                                },
+                                "example": [
+                                  2.290084,
+                                  49.897443
+                                ]
+                              }
+                            }
+                          },
+                          "properties": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string",
+                                "example": "8 Boulevard du Port 80000 Amiens"
+                              },
+                              "score": {
+                                "type": "number",
+                                "format": "float",
+                                "example": 0.49159121588068583
+                              },
+                              "housenumber": {
+                                "type": "string",
+                                "example": "8"
+                              },
+                              "id": {
+                                "type": "string",
+                                "example": "80021_6590_00008"
+                              },
+                              "name": {
+                                "type": "string",
+                                "example": "8 Boulevard du Port"
+                              },
+                              "postcode": {
+                                "type": "string",
+                                "example": "80000"
+                              },
+                              "citycode": {
+                                "type": "string",
+                                "example": "80021"
+                              },
+                              "x": {
+                                "type": "number",
+                                "example": 648952.58
+                              },
+                              "y": {
+                                "type": "number",
+                                "example": 6977867.25
+                              },
+                              "city": {
+                                "type": "string",
+                                "example": "Amiens"
+                              },
+                              "context": {
+                                "type": "string",
+                                "example": "80, Somme, Hauts-de-France"
+                              },
+                              "type": {
+                                "type": "string",
+                                "example": "housenumber"
+                              },
+                              "importance": {
+                                "type": "number",
+                                "example": 0.6
+                              },
+                              "street": {
+                                "type": "string",
+                                "example": "Boulevard du Port"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "attribution": {
+                      "type": "string",
+                      "example": "BAN"
+                    },
+                    "licence": {
+                      "type": "string",
+                      "example": "ETALAB-2.0"
+                    },
+                    "query": {
+                      "type": "string",
+                      "example": "8 bd du port"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "example": 5
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters"
+          }
+        }
+      }
+    },
+    "/reverse": {
+      "get": {
+        "summary": "Reverse geocoding",
+        "description": "Get address information from coordinates (latitude/longitude). This endpoint performs reverse geocoding by converting geographic coordinates into a human-readable address.",
+        "operationId": "reverseGeocode",
+        "tags": [
+          "Geocoding"
+        ],
+        "parameters": [
+          {
+            "name": "lat",
+            "in": "query",
+            "description": "Latitude coordinate",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "float",
+              "minimum": -90,
+              "maximum": 90
+            },
+            "example": 48.856614
+          },
+          {
+            "name": "lon",
+            "in": "query",
+            "description": "Longitude coordinate",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "float",
+              "minimum": -180,
+              "maximum": 180
+            },
+            "example": 2.352222
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Filter by type of result",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "housenumber",
+                "street",
+                "locality",
+                "municipality"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with address information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "example": "FeatureCollection"
+                    },
+                    "version": {
+                      "type": "string",
+                      "example": "draft"
+                    },
+                    "features": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "example": "Feature"
+                          },
+                          "geometry": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "example": "Point"
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "number"
+                                },
+                                "example": [
+                                  2.352222,
+                                  48.856614
+                                ]
+                              }
+                            }
+                          },
+                          "properties": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string",
+                                "example": "Musée du Louvre 75001 Paris"
+                              },
+                              "score": {
+                                "type": "number",
+                                "format": "float"
+                              },
+                              "housenumber": {
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "postcode": {
+                                "type": "string",
+                                "example": "75001"
+                              },
+                              "citycode": {
+                                "type": "string"
+                              },
+                              "x": {
+                                "type": "number"
+                              },
+                              "y": {
+                                "type": "number"
+                              },
+                              "city": {
+                                "type": "string",
+                                "example": "Paris"
+                              },
+                              "context": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              },
+                              "importance": {
+                                "type": "number"
+                              },
+                              "street": {
+                                "type": "string"
+                              },
+                              "distance": {
+                                "type": "integer",
+                                "description": "Distance in meters from the requested coordinates"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "attribution": {
+                      "type": "string",
+                      "example": "BAN"
+                    },
+                    "licence": {
+                      "type": "string",
+                      "example": "ETALAB-2.0"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid coordinates or parameters"
+          }
+        }
+      }
+    },
+    "/search/csv": {
+      "post": {
+        "summary": "Batch geocoding from CSV",
+        "description": "Upload a CSV file containing multiple addresses and receive geocoded results. This endpoint allows batch processing of addresses for forward geocoding.",
+        "operationId": "batchGeocodeCSV",
+        "tags": [
+          "Batch Geocoding"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "data"
+                ],
+                "properties": {
+                  "data": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "CSV file containing addresses to geocode"
+                  },
+                  "columns": {
+                    "type": "string",
+                    "description": "Name of the column containing the address (default: 'adresse')",
+                    "example": "adresse"
+                  },
+                  "citycode": {
+                    "type": "string",
+                    "description": "Name of the column containing the INSEE city code"
+                  },
+                  "postcode": {
+                    "type": "string",
+                    "description": "Name of the column containing the postal code"
+                  },
+                  "result_columns": {
+                    "type": "string",
+                    "description": "Comma-separated list of result columns to include",
+                    "example": "result_label,result_score,result_type,latitude,longitude"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response with geocoded CSV file",
+            "content": {
+              "text/csv": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary",
+                  "description": "CSV file with original data plus geocoding results"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid CSV format or parameters"
+          },
+          "413": {
+            "description": "Payload too large - file size exceeds limit"
+          }
+        }
+      }
+    },
+    "/reverse/csv": {
+      "post": {
+        "summary": "Batch reverse geocoding from CSV",
+        "description": "Upload a CSV file containing latitude/longitude coordinates and receive address results. This endpoint allows batch processing of coordinates for reverse geocoding.",
+        "operationId": "batchReverseGeocodeCSV",
+        "tags": [
+          "Batch Geocoding"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "data"
+                ],
+                "properties": {
+                  "data": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "CSV file containing coordinates to reverse geocode"
+                  },
+                  "latitude": {
+                    "type": "string",
+                    "description": "Name of the column containing latitude values (default: 'latitude')",
+                    "example": "latitude"
+                  },
+                  "longitude": {
+                    "type": "string",
+                    "description": "Name of the column containing longitude values (default: 'longitude')",
+                    "example": "longitude"
+                  },
+                  "result_columns": {
+                    "type": "string",
+                    "description": "Comma-separated list of result columns to include",
+                    "example": "result_label,result_distance,result_city,result_postcode"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response with reverse geocoded CSV file",
+            "content": {
+              "text/csv": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary",
+                  "description": "CSV file with original data plus reverse geocoding results"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid CSV format or parameters"
+          },
+          "413": {
+            "description": "Payload too large - file size exceeds limit"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Geocoding",
+      "description": "Forward and reverse geocoding operations for individual addresses"
+    },
+    {
+      "name": "Batch Geocoding",
+      "description": "Batch processing of addresses and coordinates from CSV files"
+    }
+  ],
+  "externalDocs": {
+    "description": "Official API Documentation",
+    "url": "https://adresse.data.gouv.fr/api-doc/adresse"
+  }
+}

@@ -1,0 +1,22 @@
+# BasicGeocodingFlow
+
+main: kit: flow: BasicGeocodingFlow:
+{
+  entity: "geocoding",
+  kind: "basic",
+  name: "BasicGeocodingFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "geocoding_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGeocodingFlow"
+}

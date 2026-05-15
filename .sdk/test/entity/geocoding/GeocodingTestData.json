@@ -1,0 +1,30 @@
+{
+  "existing": {
+    "geocoding": {
+      "GEOCODING00": {
+        "geometry": {},
+        "property": {},
+        "type": "s20"
+      },
+      "GEOCODING01": {
+        "geometry": {},
+        "property": {},
+        "type": "s3e"
+      },
+      "GEOCODING02": {
+        "geometry": {},
+        "property": {},
+        "type": "s5c"
+      }
+    }
+  },
+  "new": {
+    "geocoding": {
+      "geocoding_ref01": {
+        "geometry": {},
+        "property": {},
+        "type": "s7a"
+      }
+    }
+  }
+}

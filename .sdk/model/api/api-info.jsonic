@@ -1,0 +1,24 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "French Address API"
+        url: "https://adresse.data.gouv.fr/api-doc/adresse"
+      }
+      description: "Official French address validation service. It provides endpoints for both forward and reverse geocoding, as well as the ability to perform batch geocoding from CSV files."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://api-adresse.data.gouv.fr"
+        }
+      ]
+      title: "French Address API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

@@ -1,0 +1,26 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 2
+  metrics: count: path: 4
+  metrics: count: method: 4
+
+  entity: batch_geocoding: {
+    path: "/reverse/csv": {
+      op: create: method: *POST
+    }
+    path: "/search/csv": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: geocoding: {
+    path: "/reverse": {
+      op: list: method: *GET
+    }
+    path: "/search": {
+      op: list: method: *GET
+    }
+  }
+
+}
