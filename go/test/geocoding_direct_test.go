@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/adress-api-france-sdk"
-	"github.com/voxgig-sdk/adress-api-france-sdk/core"
+	sdk "github.com/voxgig-sdk/adress-api-france-sdk/go"
+	"github.com/voxgig-sdk/adress-api-france-sdk/go/core"
 )
 
 func TestGeocodingDirect(t *testing.T) {

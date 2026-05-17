@@ -1,10 +1,10 @@
 package voxgigadressapifrancesdk
 
 import (
-	"github.com/voxgig-sdk/adress-api-france-sdk/core"
-	"github.com/voxgig-sdk/adress-api-france-sdk/entity"
-	"github.com/voxgig-sdk/adress-api-france-sdk/feature"
-	_ "github.com/voxgig-sdk/adress-api-france-sdk/utility"
+	"github.com/voxgig-sdk/adress-api-france-sdk/go/core"
+	"github.com/voxgig-sdk/adress-api-france-sdk/go/entity"
+	"github.com/voxgig-sdk/adress-api-france-sdk/go/feature"
+	_ "github.com/voxgig-sdk/adress-api-france-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

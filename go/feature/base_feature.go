@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/adress-api-france-sdk/core"
+	"github.com/voxgig-sdk/adress-api-france-sdk/go/core"
 )
 
 type BaseFeature struct {

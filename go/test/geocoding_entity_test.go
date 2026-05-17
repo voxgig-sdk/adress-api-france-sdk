@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/adress-api-france-sdk"
-	"github.com/voxgig-sdk/adress-api-france-sdk/core"
+	sdk "github.com/voxgig-sdk/adress-api-france-sdk/go"
+	"github.com/voxgig-sdk/adress-api-france-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/adress-api-france-sdk/go/utility/struct"
 )
 
 func TestGeocodingEntity(t *testing.T) {

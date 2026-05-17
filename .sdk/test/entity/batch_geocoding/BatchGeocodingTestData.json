@@ -1,9 +1,15 @@
 {
   "existing": {
     "batch_geocoding": {
-      "BATCH_GEOCODING00": {},
-      "BATCH_GEOCODING01": {},
-      "BATCH_GEOCODING02": {}
+      "BATCH_GEOCODING00": {
+        "id": "BATCH_GEOCODING00"
+      },
+      "BATCH_GEOCODING01": {
+        "id": "BATCH_GEOCODING01"
+      },
+      "BATCH_GEOCODING02": {
+        "id": "BATCH_GEOCODING02"
+      }
     }
   },
   "new": {
