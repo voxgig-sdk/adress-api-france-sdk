@@ -93,14 +93,12 @@ func geocodingDirectSetup(mockres any) *geocodingDirectSetupResult {
 	env := envOverride(map[string]any{
 		"ADRESSAPIFRANCE_TEST_GEOCODING_ENTID": map[string]any{},
 		"ADRESSAPIFRANCE_TEST_LIVE":    "FALSE",
-		"ADRESSAPIFRANCE_APIKEY":       "NONE",
 	})
 
 	live := env["ADRESSAPIFRANCE_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["ADRESSAPIFRANCE_APIKEY"],
 		}
 		client := sdk.NewAdressApiFranceSDK(mergedOpts)
 

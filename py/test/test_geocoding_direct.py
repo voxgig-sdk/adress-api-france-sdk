@@ -61,14 +61,12 @@ def _geocoding_direct_setup(mockres):
     env = runner.env_override({
         "ADRESSAPIFRANCE_TEST_GEOCODING_ENTID": {},
         "ADRESSAPIFRANCE_TEST_LIVE": "FALSE",
-        "ADRESSAPIFRANCE_APIKEY": "NONE",
     })
 
     live = env.get("ADRESSAPIFRANCE_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("ADRESSAPIFRANCE_APIKEY"),
         }
         client = AdressApiFranceSDK(merged_opts)
         return {

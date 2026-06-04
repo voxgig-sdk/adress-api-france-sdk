@@ -17,8 +17,28 @@ main: {
       ]
       title: "French Address API"
       version: "1.0.0"
+      tagline: "Geocode and reverse-geocode French postal addresses against the official Base Adresse Nationale"
+      homepage: "https://adresse.data.gouv.fr"
+      docs_url: "https://adresse.data.gouv.fr/api-doc/adresse"
+      license_short: "Etalab Open Licence 2.0 (Licence Ouverte 2.0)"
+      license_md: `- Data and service are published under the [Etalab Open Licence 2.0](https://github.com/etalab/licence-ouverte/blob/master/LO.md), which permits reuse including commercial use.
+- Attribution to the source (Base Adresse Nationale / IGN) is expected when reusing the data.
+- Underlying address data is maintained by IGN, ANCT and the wider BAN partnership.`
+      about_md: `The French Address API is the public geocoding service operated by the French government over the [Base Adresse Nationale (BAN)](https://adresse.data.gouv.fr), the national reference dataset of French postal addresses. It is hosted on the data.gouv.fr / Géoplateforme infrastructure run by [Etalab](https://www.etalab.gouv.fr/) and [IGN](https://www.ign.fr/).
+
+What you get from the API:
+
+- Forward geocoding from a free-text query to ranked address candidates with coordinates.
+- Reverse geocoding from latitude/longitude to the nearest known addresses.
+- Batch geocoding by uploading a CSV file and receiving an enriched CSV back.
+- Result metadata such as score, address label, postcode, city (commune), INSEE code and a result type (housenumber, street, locality, municipality).
+
+The underlying BAN dataset is refreshed roughly twice a week. The service is open and does not require an API key; CORS is enabled. Usage is capped at around 50 requests per second per IP, after which the server returns HTTP 429 with a \`Retry-After\` header. Note: the legacy host \`api-adresse.data.gouv.fr\` is being migrated to the new Géoplateforme geocoding endpoint, so consult the official docs for the current base URL.`
+      entity_desc: {
+        batch_geocoding: "Bulk geocoding of CSV files: rows are sent to a batch endpoint (e.g. `/search/csv/` or `/reverse/csv/`) and returned as an enriched CSV with coordinates and address metadata."
+        geocoding: "Single-address forward and reverse geocoding against the Base Adresse Nationale, typically exposed via `/search/` (text query to coordinates) and `/reverse/` (coordinates to address)."
+      }
+      auth: false
     }
   }
-}
-
 }
