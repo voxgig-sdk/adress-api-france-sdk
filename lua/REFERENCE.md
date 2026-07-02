@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -98,8 +98,8 @@ local batch_geocoding = client:BatchGeocoding(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:BatchGeocoding(nil):create({
-}, nil)
+local result, err = client:BatchGeocoding():create({
+})
 ```
 
 ### Common Methods
@@ -153,7 +153,7 @@ local geocoding = client:Geocoding(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Geocoding(nil):list(nil, nil)
+local results, err = client:Geocoding():list()
 ```
 
 ### Common Methods

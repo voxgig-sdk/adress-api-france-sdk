@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'ADRESS_API_FRANCE_TEST_GEOCODING_ENTID': idmap,
     'ADRESS_API_FRANCE_TEST_LIVE': 'FALSE',
     'ADRESS_API_FRANCE_TEST_EXPLAIN': 'FALSE',
+    'ADRESS_API_FRANCE_APIKEY': 'NONE',
   })
 
   idmap = env['ADRESS_API_FRANCE_TEST_GEOCODING_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new AdressApiFranceSDK(merge([
       {
+        apikey: env.ADRESS_API_FRANCE_APIKEY,
       },
       extra
     ]))

@@ -68,12 +68,14 @@ function geocoding_direct_setup($mockres)
     $env = Runner::env_override([
         "ADRESSAPIFRANCE_TEST_GEOCODING_ENTID" => [],
         "ADRESSAPIFRANCE_TEST_LIVE" => "FALSE",
+        "ADRESSAPIFRANCE_APIKEY" => "NONE",
     ]);
 
     $live = $env["ADRESSAPIFRANCE_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["ADRESSAPIFRANCE_APIKEY"],
         ];
         $client = new AdressApiFranceSDK($merged_opts);
         return [
