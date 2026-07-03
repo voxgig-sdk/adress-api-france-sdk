@@ -10,7 +10,7 @@ The Python SDK for the AdressApiFrance API — an entity-oriented client followi
 
 ## Install
 ```bash
-pip install adress-api-france-sdk
+pip install voxgig-sdk-adress-api-france
 ```
 
 Or install from source:

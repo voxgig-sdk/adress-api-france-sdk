@@ -10,7 +10,7 @@ The Lua SDK for the AdressApiFrance API — an entity-oriented client using Lua 
 
 ## Install
 ```bash
-luarocks install adress-api-france-sdk
+luarocks install voxgig-sdk-adress-api-france
 ```
 
 If the module is not yet published, add the source directory to

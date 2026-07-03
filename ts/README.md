@@ -10,7 +10,7 @@ The TypeScript SDK for the AdressApiFrance API — a type-safe, entity-oriented 
 
 ## Install
 ```bash
-npm install adress-api-france
+npm install @voxgig-sdk/adress-api-france
 ```
 ## Tutorial: your first API call
 

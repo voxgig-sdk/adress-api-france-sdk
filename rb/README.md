@@ -10,13 +10,13 @@ The Ruby SDK for the AdressApiFrance API — an entity-oriented client using idi
 
 ## Install
 ```bash
-gem install adress-api-france-sdk
+gem install voxgig-sdk-adress-api-france
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "adress-api-france-sdk"
+gem "voxgig-sdk-adress-api-france"
 ```
 
 Then run:

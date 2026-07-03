@@ -10,7 +10,7 @@ The PHP SDK for the AdressApiFrance API — an entity-oriented client using PHP 
 
 ## Install
 ```bash
-composer require voxgig/adress-api-france-sdk
+composer require voxgig-sdk/adress-api-france
 ```
 
 
