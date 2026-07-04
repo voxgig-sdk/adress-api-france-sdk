@@ -9,9 +9,12 @@ The TypeScript SDK for the AdressApiFrance API — a type-safe, entity-oriented 
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/adress-api-france
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/adress-api-france-sdk/releases](https://github.com/voxgig-sdk/adress-api-france-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,18 +23,16 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { AdressApiFranceSDK } from 'adress-api-france'
+import { AdressApiFranceSDK } from '@voxgig-sdk/adress-api-france'
 
-const client = new AdressApiFranceSDK({
-  apikey: process.env.ADRESS-API-FRANCE_APIKEY,
-})
+const client = new AdressApiFranceSDK()
 ```
 
 ### 4. Create, update, and remove
 
 ```ts
 // Create
-const created = await client.BatchGeocoding().create({
+const created = await client.batchgeocoding.create({
   name: 'Example',
 })
 
@@ -79,7 +80,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = AdressApiFranceSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.batchgeocoding.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -87,7 +88,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new AdressApiFranceSDK({ apikey: '...' })
+const client = new AdressApiFranceSDK()
 const testClient = client.tester()
 ```
 
@@ -96,7 +97,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.batchgeocoding
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -123,7 +124,6 @@ const logger = {
 }
 
 const client = new AdressApiFranceSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -133,8 +133,7 @@ const client = new AdressApiFranceSDK({
 Create a `.env.local` file at the project root:
 
 ```
-ADRESS-API-FRANCE_TEST_LIVE=TRUE
-ADRESS-API-FRANCE_APIKEY=<your-key>
+ADRESS_API_FRANCE_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -152,7 +151,6 @@ cd ts && npm test
 
 ```ts
 new AdressApiFranceSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -163,7 +161,6 @@ new AdressApiFranceSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -278,7 +275,7 @@ API path: `/search`
 
 ### BatchGeocoding
 
-Create an instance: `const batch_geocoding = client.BatchGeocoding()`
+Create an instance: `const batch_geocoding = client.batch_geocoding`
 
 #### Operations
 
@@ -289,14 +286,14 @@ Create an instance: `const batch_geocoding = client.BatchGeocoding()`
 #### Example: Create
 
 ```ts
-const batch_geocoding = await client.BatchGeocoding().create({
+const batch_geocoding = await client.batch_geocoding.create({
 })
 ```
 
 
 ### Geocoding
 
-Create an instance: `const geocoding = client.Geocoding()`
+Create an instance: `const geocoding = client.geocoding`
 
 #### Operations
 
@@ -315,7 +312,7 @@ Create an instance: `const geocoding = client.Geocoding()`
 #### Example: List
 
 ```ts
-const geocodings = await client.Geocoding().list()
+const geocodings = await client.geocoding.list()
 ```
 
 
@@ -376,7 +373,7 @@ adress-api-france/
 Import the SDK from the package root:
 
 ```ts
-import { AdressApiFranceSDK } from 'adress-api-france'
+import { AdressApiFranceSDK } from '@voxgig-sdk/adress-api-france'
 ```
 
 ### Entity state
@@ -386,11 +383,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const batchgeocoding = client.batchgeocoding
+await batchgeocoding.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// batchgeocoding.data() now returns the loaded batchgeocoding data
+// batchgeocoding.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

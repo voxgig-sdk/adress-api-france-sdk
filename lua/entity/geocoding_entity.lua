@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch GeocodingListMatch
+---@param ctrl? table
+---@return Geocoding[]
+---@return string? err
 function GeocodingEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -245,11 +245,17 @@ func (sdk *AdressApiFranceSDK) Direct(fetchargs map[string]any) (map[string]any,
 }
 
 
+// BatchGeocoding returns a BatchGeocoding entity bound to this client.
+// Idiomatic usage: client.BatchGeocoding(nil).List(nil, nil) or
+// client.BatchGeocoding(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *AdressApiFranceSDK) BatchGeocoding(data map[string]any) AdressApiFranceEntity {
 	return NewBatchGeocodingEntityFunc(sdk, data)
 }
 
 
+// Geocoding returns a Geocoding entity bound to this client.
+// Idiomatic usage: client.Geocoding(nil).List(nil, nil) or
+// client.Geocoding(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *AdressApiFranceSDK) Geocoding(data map[string]any) AdressApiFranceEntity {
 	return NewGeocodingEntityFunc(sdk, data)
 }

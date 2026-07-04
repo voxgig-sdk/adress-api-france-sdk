@@ -83,6 +83,10 @@ end
 
 
 
+---@param reqdata BatchGeocodingCreateData
+---@param ctrl? table
+---@return BatchGeocoding
+---@return string? err
 function BatchGeocodingEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

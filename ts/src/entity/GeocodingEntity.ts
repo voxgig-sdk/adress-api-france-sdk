@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Geocoding,
+  GeocodingListMatch,
+} from '../AdressApiFranceTypes'
 
 // TODO: needs Entity superclass
-class GeocodingEntity extends AdressApiFranceEntityBase {
+class GeocodingEntity extends AdressApiFranceEntityBase<Geocoding> {
 
   constructor(client: AdressApiFranceSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class GeocodingEntity extends AdressApiFranceEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: GeocodingListMatch, ctrl?: Control): Promise<Geocoding[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class GeocodingEntity extends AdressApiFranceEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Geocoding[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

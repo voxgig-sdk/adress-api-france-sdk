@@ -43,8 +43,7 @@ class GeocodingEntityTest < Minitest::Test
     geocoding_ref01_ent = client.Geocoding(nil)
     geocoding_ref01_match = {}
 
-    geocoding_ref01_list_result, err = geocoding_ref01_ent.list(geocoding_ref01_match, nil)
-    assert_nil err
+    geocoding_ref01_list_result = geocoding_ref01_ent.list(geocoding_ref01_match, nil)
     assert geocoding_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def geocoding_basic_setup(extra)
     "ADRESSAPIFRANCE_TEST_GEOCODING_ENTID" => idmap,
     "ADRESSAPIFRANCE_TEST_LIVE" => "FALSE",
     "ADRESSAPIFRANCE_TEST_EXPLAIN" => "FALSE",
-    "ADRESSAPIFRANCE_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def geocoding_basic_setup(extra)
   if env["ADRESSAPIFRANCE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ADRESSAPIFRANCE_APIKEY"],
       },
       extra || {},
     ])

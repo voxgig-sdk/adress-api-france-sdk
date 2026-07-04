@@ -4,6 +4,7 @@
 main: {
   kit: {
     info: {
+      auth: false
       contact: {
         name: "French Address API"
         url: "https://adresse.data.gouv.fr/api-doc/adresse"

@@ -44,9 +44,7 @@ class TestBatchGeocodingEntity:
         batch_geocoding_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.batch_geocoding"), "batch_geocoding_ref01"))
 
-        batch_geocoding_ref01_data_result, err = batch_geocoding_ref01_ent.create(batch_geocoding_ref01_data, None)
-        assert err is None
-        batch_geocoding_ref01_data = helpers.to_map(batch_geocoding_ref01_data_result)
+        batch_geocoding_ref01_data = helpers.to_map(batch_geocoding_ref01_ent.create(batch_geocoding_ref01_data, None))
         assert batch_geocoding_ref01_data is not None
 
 
@@ -87,7 +85,6 @@ def _batch_geocoding_basic_setup(extra):
         "ADRESSAPIFRANCE_TEST_BATCH_GEOCODING_ENTID": idmap,
         "ADRESSAPIFRANCE_TEST_LIVE": "FALSE",
         "ADRESSAPIFRANCE_TEST_EXPLAIN": "FALSE",
-        "ADRESSAPIFRANCE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -98,7 +95,6 @@ def _batch_geocoding_basic_setup(extra):
     if env.get("ADRESSAPIFRANCE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ADRESSAPIFRANCE_APIKEY"),
             },
             extra or {},
         ])

@@ -50,8 +50,7 @@ class TestGeocodingEntity:
         geocoding_ref01_ent = client.Geocoding(None)
         geocoding_ref01_match = {}
 
-        geocoding_ref01_list_result, err = geocoding_ref01_ent.list(geocoding_ref01_match, None)
-        assert err is None
+        geocoding_ref01_list_result = geocoding_ref01_ent.list(geocoding_ref01_match, None)
         assert isinstance(geocoding_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _geocoding_basic_setup(extra):
         "ADRESSAPIFRANCE_TEST_GEOCODING_ENTID": idmap,
         "ADRESSAPIFRANCE_TEST_LIVE": "FALSE",
         "ADRESSAPIFRANCE_TEST_EXPLAIN": "FALSE",
-        "ADRESSAPIFRANCE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _geocoding_basic_setup(extra):
     if env.get("ADRESSAPIFRANCE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ADRESSAPIFRANCE_APIKEY"),
             },
             extra or {},
         ])

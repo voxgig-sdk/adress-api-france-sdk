@@ -45,6 +45,7 @@ class GeocodingEntity
     end
   end
 
+  # @return [Geocoding, Hash] the current Geocoding data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class GeocodingEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Geocoding fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class GeocodingEntity
   
 
   
+  # List Geocoding items matching the given filter.
+  #
+  # @param reqmatch [GeocodingListMatch, Hash, nil] match filter (any subset of Geocoding fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Geocoding>, Array] the matching Geocoding items; raises AdressApiFranceError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

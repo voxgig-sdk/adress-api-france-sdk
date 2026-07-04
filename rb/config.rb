@@ -15,9 +15,6 @@ module AdressApiFranceConfig
       },
       "options" => {
         "base" => "https://api-adresse.data.gouv.fr",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

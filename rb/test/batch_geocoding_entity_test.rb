@@ -36,8 +36,7 @@ class BatchGeocodingEntityTest < Minitest::Test
     batch_geocoding_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.batch_geocoding"), "batch_geocoding_ref01"))
 
-    batch_geocoding_ref01_data_result, err = batch_geocoding_ref01_ent.create(batch_geocoding_ref01_data, nil)
-    assert_nil err
+    batch_geocoding_ref01_data_result = batch_geocoding_ref01_ent.create(batch_geocoding_ref01_data, nil)
     batch_geocoding_ref01_data = Helpers.to_map(batch_geocoding_ref01_data_result)
     assert !batch_geocoding_ref01_data.nil?
 
@@ -77,7 +76,6 @@ def batch_geocoding_basic_setup(extra)
     "ADRESSAPIFRANCE_TEST_BATCH_GEOCODING_ENTID" => idmap,
     "ADRESSAPIFRANCE_TEST_LIVE" => "FALSE",
     "ADRESSAPIFRANCE_TEST_EXPLAIN" => "FALSE",
-    "ADRESSAPIFRANCE_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -89,7 +87,6 @@ def batch_geocoding_basic_setup(extra)
   if env["ADRESSAPIFRANCE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ADRESSAPIFRANCE_APIKEY"],
       },
       extra || {},
     ])

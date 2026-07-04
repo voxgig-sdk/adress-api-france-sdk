@@ -43,8 +43,7 @@ class BatchGeocodingEntityTest extends TestCase
         $batch_geocoding_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.batch_geocoding"), "batch_geocoding_ref01"));
 
-        [$batch_geocoding_ref01_data_result, $err] = $batch_geocoding_ref01_ent->create($batch_geocoding_ref01_data, null);
-        $this->assertNull($err);
+        $batch_geocoding_ref01_data_result = $batch_geocoding_ref01_ent->create($batch_geocoding_ref01_data, null);
         $batch_geocoding_ref01_data = Helpers::to_map($batch_geocoding_ref01_data_result);
         $this->assertNotNull($batch_geocoding_ref01_data);
 
@@ -80,7 +79,6 @@ function batch_geocoding_basic_setup($extra)
         "ADRESSAPIFRANCE_TEST_BATCH_GEOCODING_ENTID" => $idmap,
         "ADRESSAPIFRANCE_TEST_LIVE" => "FALSE",
         "ADRESSAPIFRANCE_TEST_EXPLAIN" => "FALSE",
-        "ADRESSAPIFRANCE_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -92,7 +90,6 @@ function batch_geocoding_basic_setup($extra)
     if ($env["ADRESSAPIFRANCE_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ADRESSAPIFRANCE_APIKEY"],
             ],
             $extra ?? [],
         ]);

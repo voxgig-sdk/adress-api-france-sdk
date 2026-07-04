@@ -9,9 +9,10 @@ The PHP SDK for the AdressApiFrance API — an entity-oriented client using PHP 
 
 
 ## Install
-```bash
-composer require voxgig-sdk/adress-api-france
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/adress-api-france-sdk/releases](https://github.com/voxgig-sdk/adress-api-france-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,16 +26,14 @@ loading a specific record.
 <?php
 require_once 'adressapifrance_sdk.php';
 
-$client = new AdressApiFranceSDK([
-    "apikey" => getenv("ADRESS-API-FRANCE_APIKEY"),
-]);
+$client = new AdressApiFranceSDK();
 ```
 
 ### 4. Create, update, and remove
 
 ```php
 // Create
-[$created, $_] = $client->BatchGeocoding()->create(["name" => "Example"]);
+$created = $client->batchgeocoding()->create(["name" => "Example"]);
 
 ```
 
@@ -46,28 +45,31 @@ $client = new AdressApiFranceSDK([
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -81,7 +83,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = AdressApiFranceSDK::test();
 
-[$result, $err] = $client->AdressApiFrance()->load(["id" => "test01"]);
+$result = $client->batchgeocoding()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -115,8 +117,7 @@ $client = new AdressApiFranceSDK([
 Create a `.env.local` file at the project root:
 
 ```
-ADRESS-API-FRANCE_TEST_LIVE=TRUE
-ADRESS-API-FRANCE_APIKEY=<your-key>
+ADRESS_API_FRANCE_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -139,7 +140,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -186,8 +186,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -228,7 +232,7 @@ API path: `/search`
 
 ### BatchGeocoding
 
-Create an instance: `const batch_geocoding = client.BatchGeocoding()`
+Create an instance: `const batch_geocoding = client.batch_geocoding`
 
 #### Operations
 
@@ -239,14 +243,14 @@ Create an instance: `const batch_geocoding = client.BatchGeocoding()`
 #### Example: Create
 
 ```ts
-const batch_geocoding = await client.BatchGeocoding().create({
+const batch_geocoding = await client.batch_geocoding.create({
 })
 ```
 
 
 ### Geocoding
 
-Create an instance: `const geocoding = client.Geocoding()`
+Create an instance: `const geocoding = client.geocoding`
 
 #### Operations
 
@@ -265,7 +269,7 @@ Create an instance: `const geocoding = client.Geocoding()`
 #### Example: List
 
 ```ts
-const geocodings = await client.Geocoding().list()
+const geocodings = await client.geocoding.list()
 ```
 
 
@@ -340,11 +344,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$batchgeocoding = $client->batchgeocoding();
+$batchgeocoding->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $batchgeocoding->dataGet() now returns the loaded batchgeocoding data
+// $batchgeocoding->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

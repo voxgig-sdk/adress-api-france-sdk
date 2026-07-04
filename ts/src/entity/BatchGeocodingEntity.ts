@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  BatchGeocoding,
+  BatchGeocodingCreateData,
+} from '../AdressApiFranceTypes'
 
 // TODO: needs Entity superclass
-class BatchGeocodingEntity extends AdressApiFranceEntityBase {
+class BatchGeocodingEntity extends AdressApiFranceEntityBase<BatchGeocoding> {
 
   constructor(client: AdressApiFranceSDK, entopts: any) {
     super(client, entopts)
@@ -34,7 +38,7 @@ class BatchGeocodingEntity extends AdressApiFranceEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: BatchGeocodingCreateData, ctrl?: Control): Promise<BatchGeocoding> {
 
     const utility = this._utility
     const {
@@ -133,7 +137,9 @@ class BatchGeocodingEntity extends AdressApiFranceEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<BatchGeocoding> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

@@ -3,6 +3,8 @@
 import { BatchGeocodingEntity } from './entity/BatchGeocodingEntity'
 import { GeocodingEntity } from './entity/GeocodingEntity'
 
+export type * from './AdressApiFranceTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -203,12 +205,28 @@ class AdressApiFranceSDK {
 
 
 
+  _batch_geocoding?: BatchGeocodingEntity
+
+  // Idiomatic facade: `client.batch_geocoding.list()` / `client.batch_geocoding.load({ id })`.
+  get batch_geocoding(): BatchGeocodingEntity {
+    return (this._batch_geocoding ??= new BatchGeocodingEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.batch_geocoding` instead. */
   BatchGeocoding(data?: any) {
     const self = this
     return new BatchGeocodingEntity(self,data)
   }
 
 
+  _geocoding?: GeocodingEntity
+
+  // Idiomatic facade: `client.geocoding.list()` / `client.geocoding.load({ id })`.
+  get geocoding(): GeocodingEntity {
+    return (this._geocoding ??= new GeocodingEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.geocoding` instead. */
   Geocoding(data?: any) {
     const self = this
     return new GeocodingEntity(self,data)

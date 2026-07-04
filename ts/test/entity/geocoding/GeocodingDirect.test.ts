@@ -82,14 +82,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'ADRESSAPIFRANCE_TEST_GEOCODING_ENTID': {},
     'ADRESSAPIFRANCE_TEST_LIVE': 'FALSE',
-    'ADRESSAPIFRANCE_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.ADRESSAPIFRANCE_TEST_LIVE
 
   if (live) {
     const client = new AdressApiFranceSDK({
-      apikey: env.ADRESSAPIFRANCE_APIKEY,
     })
 
     let idmap: any = env['ADRESSAPIFRANCE_TEST_GEOCODING_ENTID']

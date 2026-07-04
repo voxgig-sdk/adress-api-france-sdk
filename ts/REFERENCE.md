@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -122,7 +121,7 @@ Alias for `AdressApiFranceSDK.test()`.
 ## BatchGeocodingEntity
 
 ```ts
-const batch_geocoding = client.BatchGeocoding()
+const batch_geocoding = client.batch_geocoding
 ```
 
 ### Operations
@@ -132,7 +131,7 @@ const batch_geocoding = client.BatchGeocoding()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.BatchGeocoding().create({
+const result = await client.batch_geocoding.create({
 })
 ```
 
@@ -167,7 +166,7 @@ Return a copy of the entity options.
 ## GeocodingEntity
 
 ```ts
-const geocoding = client.Geocoding()
+const geocoding = client.geocoding
 ```
 
 ### Fields
@@ -185,7 +184,7 @@ const geocoding = client.Geocoding()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Geocoding().list()
+const results = await client.geocoding.list()
 ```
 
 ### Common Methods

@@ -119,7 +119,6 @@ func geocodingBasicSetup(extra map[string]any) *entityTestSetup {
 		"ADRESSAPIFRANCE_TEST_GEOCODING_ENTID": idmap,
 		"ADRESSAPIFRANCE_TEST_LIVE":      "FALSE",
 		"ADRESSAPIFRANCE_TEST_EXPLAIN":   "FALSE",
-		"ADRESSAPIFRANCE_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["ADRESSAPIFRANCE_TEST_GEOCODING_ENTID"])
@@ -130,7 +129,6 @@ func geocodingBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["ADRESSAPIFRANCE_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["ADRESSAPIFRANCE_APIKEY"],
 			},
 			extra,
 		})

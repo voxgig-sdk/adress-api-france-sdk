@@ -144,16 +144,23 @@ class AdressApiFranceSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class AdressApiFranceSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,20 +212,42 @@ class AdressApiFranceSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def batch_geocoding(self):
+        """Idiomatic facade: client.batch_geocoding.list() / client.batch_geocoding.load({"id": ...})."""
+        from entity.batch_geocoding_entity import BatchGeocodingEntity
+        cached = getattr(self, "_batch_geocoding", None)
+        if cached is None:
+            cached = BatchGeocodingEntity(self, None)
+            self._batch_geocoding = cached
+        return cached
 
     def BatchGeocoding(self, data=None):
+        # Deprecated: use client.batch_geocoding instead.
         from entity.batch_geocoding_entity import BatchGeocodingEntity
         return BatchGeocodingEntity(self, data)
 
 
+    @property
+    def geocoding(self):
+        """Idiomatic facade: client.geocoding.list() / client.geocoding.load({"id": ...})."""
+        from entity.geocoding_entity import GeocodingEntity
+        cached = getattr(self, "_geocoding", None)
+        if cached is None:
+            cached = GeocodingEntity(self, None)
+            self._geocoding = cached
+        return cached
+
     def Geocoding(self, data=None):
+        # Deprecated: use client.geocoding instead.
         from entity.geocoding_entity import GeocodingEntity
         return GeocodingEntity(self, data)
 

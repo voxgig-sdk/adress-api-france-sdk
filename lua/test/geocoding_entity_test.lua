@@ -92,7 +92,6 @@ function geocoding_basic_setup(extra)
     ["ADRESSAPIFRANCE_TEST_GEOCODING_ENTID"] = idmap,
     ["ADRESSAPIFRANCE_TEST_LIVE"] = "FALSE",
     ["ADRESSAPIFRANCE_TEST_EXPLAIN"] = "FALSE",
-    ["ADRESSAPIFRANCE_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -104,7 +103,6 @@ function geocoding_basic_setup(extra)
   if env["ADRESSAPIFRANCE_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["ADRESSAPIFRANCE_APIKEY"],
       },
       extra or {},
     })

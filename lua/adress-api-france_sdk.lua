@@ -244,12 +244,38 @@ end
 
 
 
+-- Idiomatic facade: client:batch_geocoding():list() / client:batch_geocoding():load({ id = ... })
+function AdressApiFranceSDK:batch_geocoding(data)
+  local EntityMod = require("entity.batch_geocoding_entity")
+  if data == nil then
+    if self._batch_geocoding == nil then
+      self._batch_geocoding = EntityMod.new(self, nil)
+    end
+    return self._batch_geocoding
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:batch_geocoding() instead.
 function AdressApiFranceSDK:BatchGeocoding(data)
   local EntityMod = require("entity.batch_geocoding_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:geocoding():list() / client:geocoding():load({ id = ... })
+function AdressApiFranceSDK:geocoding(data)
+  local EntityMod = require("entity.geocoding_entity")
+  if data == nil then
+    if self._geocoding == nil then
+      self._geocoding = EntityMod.new(self, nil)
+    end
+    return self._geocoding
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:geocoding() instead.
 function AdressApiFranceSDK:Geocoding(data)
   local EntityMod = require("entity.geocoding_entity")
   return EntityMod.new(self, data)
