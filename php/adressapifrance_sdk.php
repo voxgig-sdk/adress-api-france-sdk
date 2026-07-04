@@ -233,10 +233,10 @@ class AdressApiFranceSDK
 
     private $_batch_geocoding = null;
 
-    // Idiomatic facade: $client->batch_geocoding()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias BatchGeocoding() (PHP method
-    // names are case-insensitive).
-    public function batch_geocoding($data = null)
+    // Canonical facade: $client->BatchGeocoding()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->batch_geocoding()
+    // resolves here too.
+    public function BatchGeocoding($data = null)
     {
         require_once __DIR__ . '/entity/batch_geocoding_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class AdressApiFranceSDK
 
     private $_geocoding = null;
 
-    // Idiomatic facade: $client->geocoding()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Geocoding() (PHP method
-    // names are case-insensitive).
-    public function geocoding($data = null)
+    // Canonical facade: $client->Geocoding()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->geocoding()
+    // resolves here too.
+    public function Geocoding($data = null)
     {
         require_once __DIR__ . '/entity/geocoding_entity.php';
         if ($data === null) {

@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:batch_geocoding():list() / client:batch_geocoding():load({ id = ... })
-function AdressApiFranceSDK:batch_geocoding(data)
+-- Idiomatic facade: client:BatchGeocoding():list() / client:BatchGeocoding():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function AdressApiFranceSDK:BatchGeocoding(data)
   local EntityMod = require("entity.batch_geocoding_entity")
   if data == nil then
     if self._batch_geocoding == nil then
@@ -256,15 +257,10 @@ function AdressApiFranceSDK:batch_geocoding(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:batch_geocoding() instead.
-function AdressApiFranceSDK:BatchGeocoding(data)
-  local EntityMod = require("entity.batch_geocoding_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:geocoding():list() / client:geocoding():load({ id = ... })
-function AdressApiFranceSDK:geocoding(data)
+-- Idiomatic facade: client:Geocoding():list() / client:Geocoding():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function AdressApiFranceSDK:Geocoding(data)
   local EntityMod = require("entity.geocoding_entity")
   if data == nil then
     if self._geocoding == nil then
@@ -272,12 +268,6 @@ function AdressApiFranceSDK:geocoding(data)
     end
     return self._geocoding
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:geocoding() instead.
-function AdressApiFranceSDK:Geocoding(data)
-  local EntityMod = require("entity.geocoding_entity")
   return EntityMod.new(self, data)
 end
 

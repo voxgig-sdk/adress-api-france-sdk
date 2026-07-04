@@ -32,8 +32,8 @@ $client = new AdressApiFranceSDK();
 ### 4. Create, update, and remove
 
 ```php
-// Create
-$created = $client->batchgeocoding()->create(["name" => "Example"]);
+// create() returns the bare created BatchGeocoding record.
+$created = $client->BatchGeocoding()->create(["name" => "Example"]);
 
 ```
 
@@ -78,13 +78,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = AdressApiFranceSDK::test();
+$client = AdressApiFranceSDK::test([
+    "entity" => ["batchgeocoding" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->batchgeocoding()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$batchgeocoding = $client->BatchGeocoding()->load(["id" => "test01"]);
+print_r($batchgeocoding);
 ```
 
 ### Use a custom fetch function
@@ -232,7 +236,7 @@ API path: `/search`
 
 ### BatchGeocoding
 
-Create an instance: `const batch_geocoding = client.batch_geocoding`
+Create an instance: `$batch_geocoding = $client->BatchGeocoding();`
 
 #### Operations
 
@@ -242,15 +246,15 @@ Create an instance: `const batch_geocoding = client.batch_geocoding`
 
 #### Example: Create
 
-```ts
-const batch_geocoding = await client.batch_geocoding.create({
-})
+```php
+$batch_geocoding = $client->BatchGeocoding()->create([
+]);
 ```
 
 
 ### Geocoding
 
-Create an instance: `const geocoding = client.geocoding`
+Create an instance: `$geocoding = $client->Geocoding();`
 
 #### Operations
 
@@ -268,8 +272,9 @@ Create an instance: `const geocoding = client.geocoding`
 
 #### Example: List
 
-```ts
-const geocodings = await client.geocoding.list()
+```php
+// list() returns an array of Geocoding records (throws on error).
+$geocodings = $client->Geocoding()->list();
 ```
 
 
@@ -344,7 +349,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$batchgeocoding = $client->batchgeocoding();
+$batchgeocoding = $client->BatchGeocoding();
 $batchgeocoding->load(["id" => "example_id"]);
 
 // $batchgeocoding->dataGet() now returns the loaded batchgeocoding data

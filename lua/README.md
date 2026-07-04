@@ -35,7 +35,8 @@ local client = sdk.new()
 
 ```lua
 -- Create
-local created, _ = client:batchgeocoding():create({ name = "Example" })
+local created, err = client:BatchGeocoding():create({ name = "Example" })
+if err then error(err) end
 
 ```
 
@@ -82,8 +83,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:batchgeocoding():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:BatchGeocoding():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -184,17 +185,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local batch_geocoding, err = client:BatchGeocoding():load({ id = "example_id" })
+    if err then error(err) end
+    -- batch_geocoding is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -226,7 +232,7 @@ API path: `/search`
 
 ### BatchGeocoding
 
-Create an instance: `const batch_geocoding = client.batch_geocoding`
+Create an instance: `local batch_geocoding = client:BatchGeocoding(nil)`
 
 #### Operations
 
@@ -236,15 +242,15 @@ Create an instance: `const batch_geocoding = client.batch_geocoding`
 
 #### Example: Create
 
-```ts
-const batch_geocoding = await client.batch_geocoding.create({
+```lua
+local batch_geocoding, err = client:BatchGeocoding():create({
 })
 ```
 
 
 ### Geocoding
 
-Create an instance: `const geocoding = client.geocoding`
+Create an instance: `local geocoding = client:Geocoding(nil)`
 
 #### Operations
 
@@ -262,8 +268,8 @@ Create an instance: `const geocoding = client.geocoding`
 
 #### Example: List
 
-```ts
-const geocodings = await client.geocoding.list()
+```lua
+local geocodings, err = client:Geocoding():list()
 ```
 
 
@@ -338,7 +344,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local batchgeocoding = client:batchgeocoding()
+local batchgeocoding = client:BatchGeocoding()
 batchgeocoding:load({ id = "example_id" })
 
 -- batchgeocoding:data_get() now returns the loaded batchgeocoding data

@@ -31,8 +31,8 @@ client = AdressApiFranceSDK.new
 ### 4. Create, update, and remove
 
 ```ruby
-# Create
-created = client.batchgeocoding.create({ "name" => "Example" })
+# create returns the bare created BatchGeocoding record.
+created = client.BatchGeocoding.create({ "name" => "Example" })
 
 ```
 
@@ -77,13 +77,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = AdressApiFranceSDK.test
+client = AdressApiFranceSDK.test({
+  "entity" => { "batchgeocoding" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.batchgeocoding.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+batchgeocoding = client.BatchGeocoding.load({ "id" => "test01" })
+puts batchgeocoding
 ```
 
 ### Use a custom fetch function
@@ -227,7 +231,7 @@ API path: `/search`
 
 ### BatchGeocoding
 
-Create an instance: `const batch_geocoding = client.batch_geocoding`
+Create an instance: `batch_geocoding = client.BatchGeocoding`
 
 #### Operations
 
@@ -237,15 +241,15 @@ Create an instance: `const batch_geocoding = client.batch_geocoding`
 
 #### Example: Create
 
-```ts
-const batch_geocoding = await client.batch_geocoding.create({
+```ruby
+batch_geocoding = client.BatchGeocoding.create({
 })
 ```
 
 
 ### Geocoding
 
-Create an instance: `const geocoding = client.geocoding`
+Create an instance: `geocoding = client.Geocoding`
 
 #### Operations
 
@@ -263,8 +267,9 @@ Create an instance: `const geocoding = client.geocoding`
 
 #### Example: List
 
-```ts
-const geocodings = await client.geocoding.list()
+```ruby
+# list returns an Array of Geocoding records (raises on error).
+geocodings = client.Geocoding.list
 ```
 
 
@@ -339,7 +344,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-batchgeocoding = client.batchgeocoding
+batchgeocoding = client.BatchGeocoding
 batchgeocoding.load({ "id" => "example_id" })
 
 # batchgeocoding.data_get now returns the loaded batchgeocoding data

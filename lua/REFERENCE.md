@@ -87,7 +87,7 @@ same parameters as `direct()`.
 ## BatchGeocodingEntity
 
 ```lua
-local batch_geocoding = client:batch_geocoding(nil)
+local batch_geocoding = client:BatchGeocoding(nil)
 ```
 
 ### Operations
@@ -97,7 +97,7 @@ local batch_geocoding = client:batch_geocoding(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:batch_geocoding():create({
+local result, err = client:BatchGeocoding():create({
 })
 ```
 
@@ -134,7 +134,7 @@ Return the entity name.
 ## GeocodingEntity
 
 ```lua
-local geocoding = client:geocoding(nil)
+local geocoding = client:Geocoding(nil)
 ```
 
 ### Fields
@@ -152,7 +152,7 @@ local geocoding = client:geocoding(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:geocoding():list()
+local results, err = client:Geocoding():list()
 ```
 
 ### Common Methods

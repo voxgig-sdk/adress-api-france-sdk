@@ -84,7 +84,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## BatchGeocodingEntity
 
 ```python
-batch_geocoding = client.batch_geocoding
+batch_geocoding = client.BatchGeocoding()
 ```
 
 ### Operations
@@ -94,7 +94,7 @@ batch_geocoding = client.batch_geocoding
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.batch_geocoding.create({
+result = client.BatchGeocoding().create({
 })
 ```
 
@@ -130,7 +130,7 @@ Return the entity name.
 ## GeocodingEntity
 
 ```python
-geocoding = client.geocoding
+geocoding = client.Geocoding()
 ```
 
 ### Fields
@@ -148,7 +148,9 @@ geocoding = client.geocoding
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.geocoding.list({})
+results = client.Geocoding().list({})
+for geocoding in results:
+    print(geocoding)
 ```
 
 ### Common Methods

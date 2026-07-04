@@ -121,7 +121,7 @@ Alias for `AdressApiFranceSDK.test()`.
 ## BatchGeocodingEntity
 
 ```ts
-const batch_geocoding = client.batch_geocoding
+const batch_geocoding = client.BatchGeocoding()
 ```
 
 ### Operations
@@ -131,7 +131,7 @@ const batch_geocoding = client.batch_geocoding
 Create a new entity with the given data.
 
 ```ts
-const result = await client.batch_geocoding.create({
+const result = await client.BatchGeocoding().create({
 })
 ```
 
@@ -166,7 +166,7 @@ Return a copy of the entity options.
 ## GeocodingEntity
 
 ```ts
-const geocoding = client.geocoding
+const geocoding = client.Geocoding()
 ```
 
 ### Fields
@@ -184,7 +184,7 @@ const geocoding = client.geocoding
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.geocoding.list()
+const results = await client.Geocoding().list()
 ```
 
 ### Common Methods

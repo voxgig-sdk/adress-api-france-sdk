@@ -220,41 +220,21 @@ class AdressApiFranceSDK:
         }
 
 
-    @property
-    def batch_geocoding(self):
-        """Idiomatic facade: client.batch_geocoding.list() / client.batch_geocoding.load({"id": ...})."""
-        from entity.batch_geocoding_entity import BatchGeocodingEntity
-        cached = getattr(self, "_batch_geocoding", None)
-        if cached is None:
-            cached = BatchGeocodingEntity(self, None)
-            self._batch_geocoding = cached
-        return cached
-
-    def BatchGeocoding(self, data=None):
-        # Deprecated: use client.batch_geocoding instead.
+    def BatchGeocoding(self, data=None) -> "BatchGeocodingEntity":
+        """Entity factory: client.BatchGeocoding().list({}) / client.BatchGeocoding().load({"id": ...})."""
         from entity.batch_geocoding_entity import BatchGeocodingEntity
         return BatchGeocodingEntity(self, data)
 
 
-    @property
-    def geocoding(self):
-        """Idiomatic facade: client.geocoding.list() / client.geocoding.load({"id": ...})."""
-        from entity.geocoding_entity import GeocodingEntity
-        cached = getattr(self, "_geocoding", None)
-        if cached is None:
-            cached = GeocodingEntity(self, None)
-            self._geocoding = cached
-        return cached
-
-    def Geocoding(self, data=None):
-        # Deprecated: use client.geocoding instead.
+    def Geocoding(self, data=None) -> "GeocodingEntity":
+        """Entity factory: client.Geocoding().list({}) / client.Geocoding().load({"id": ...})."""
         from entity.geocoding_entity import GeocodingEntity
         return GeocodingEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "AdressApiFranceSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -274,3 +254,10 @@ class AdressApiFranceSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.batch_geocoding_entity import BatchGeocodingEntity
+    from entity.geocoding_entity import GeocodingEntity

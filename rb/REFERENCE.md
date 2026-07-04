@@ -90,7 +90,7 @@ same parameters as `direct()`. Raises on error.
 ## BatchGeocodingEntity
 
 ```ruby
-batch_geocoding = client.batch_geocoding
+batch_geocoding = client.BatchGeocoding
 ```
 
 ### Operations
@@ -100,7 +100,7 @@ batch_geocoding = client.batch_geocoding
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.batch_geocoding.create({
+result = client.BatchGeocoding.create({
 })
 ```
 
@@ -137,7 +137,7 @@ Return the entity name.
 ## GeocodingEntity
 
 ```ruby
-geocoding = client.geocoding
+geocoding = client.Geocoding
 ```
 
 ### Fields
@@ -155,7 +155,7 @@ geocoding = client.geocoding
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.geocoding.list(nil)
+results = client.Geocoding.list(nil)
 ```
 
 ### Common Methods

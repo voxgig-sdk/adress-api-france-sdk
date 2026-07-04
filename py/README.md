@@ -34,8 +34,8 @@ client = AdressApiFranceSDK()
 ### 4. Create, update, and remove
 
 ```python
-# Create
-created = client.batchgeocoding.create({"name": "Example"})
+# Create — returns the bare created record (a dict)
+created = client.BatchGeocoding().create({"name": "Example"})
 
 ```
 
@@ -82,8 +82,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = AdressApiFranceSDK.test()
 
-result = client.batchgeocoding.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+batchgeocoding = client.BatchGeocoding().load({"id": "test01"})
+# batchgeocoding contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -228,7 +229,7 @@ API path: `/search`
 
 ### BatchGeocoding
 
-Create an instance: `const batch_geocoding = client.batch_geocoding`
+Create an instance: `batch_geocoding = client.BatchGeocoding()`
 
 #### Operations
 
@@ -238,15 +239,15 @@ Create an instance: `const batch_geocoding = client.batch_geocoding`
 
 #### Example: Create
 
-```ts
-const batch_geocoding = await client.batch_geocoding.create({
+```python
+batch_geocoding = client.BatchGeocoding().create({
 })
 ```
 
 
 ### Geocoding
 
-Create an instance: `const geocoding = client.geocoding`
+Create an instance: `geocoding = client.Geocoding()`
 
 #### Operations
 
@@ -264,8 +265,8 @@ Create an instance: `const geocoding = client.geocoding`
 
 #### Example: List
 
-```ts
-const geocodings = await client.geocoding.list()
+```python
+geocodings = client.Geocoding().list({})
 ```
 
 
@@ -339,7 +340,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-batchgeocoding = client.batchgeocoding
+batchgeocoding = client.BatchGeocoding()
 batchgeocoding.load({"id": "example_id"})
 
 # batchgeocoding.data_get() now returns the loaded batchgeocoding data

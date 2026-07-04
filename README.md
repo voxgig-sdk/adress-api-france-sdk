@@ -129,22 +129,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = AdressApiFranceSDK.test()
-const result = await client.batchgeocoding.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const batchgeocoding = await client.BatchGeocoding().load({ id: 'test01' })
+// batchgeocoding is a bare BatchGeocoding populated with mock data
+console.log(batchgeocoding)
 ```
 
 ### Python
 
 ```python
 client = AdressApiFranceSDK.test()
-result = client.batchgeocoding.load({"id": "test01"})
+batchgeocoding = client.BatchGeocoding().load({"id": "test01"})
+print(batchgeocoding)
 ```
 
 ### PHP
 
 ```php
-$client = AdressApiFranceSDK::test();
-$result = $client->batchgeocoding()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = AdressApiFranceSDK::test([
+    "entity" => ["batchgeocoding" => ["test01" => ["id" => "test01"]]],
+]);
+$batchgeocoding = $client->BatchGeocoding()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -159,15 +164,18 @@ result, err := client.BatchGeocoding(nil).Load(
 ### Ruby
 
 ```ruby
-client = AdressApiFranceSDK.test
-result = client.batchgeocoding.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = AdressApiFranceSDK.test({
+  "entity" => { "batchgeocoding" => { "test01" => { "id" => "test01" } } },
+})
+batchgeocoding = client.BatchGeocoding.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:batchgeocoding():load({ id = "test01" })
+local result, err = client:BatchGeocoding():load({ id = "test01" })
 ```
 
 ## How it works
@@ -215,6 +223,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

@@ -208,26 +208,14 @@ class AdressApiFranceSDK
   end
 
 
-  # Idiomatic facade: client.batch_geocoding.list / client.batch_geocoding.load({ "id" => ... })
-  def batch_geocoding
-    require_relative 'entity/batch_geocoding_entity'
-    @batch_geocoding ||= BatchGeocodingEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.batch_geocoding instead.
+  # Canonical facade: client.BatchGeocoding.list / client.BatchGeocoding.load({ "id" => ... })
   def BatchGeocoding(data = nil)
     require_relative 'entity/batch_geocoding_entity'
     BatchGeocodingEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.geocoding.list / client.geocoding.load({ "id" => ... })
-  def geocoding
-    require_relative 'entity/geocoding_entity'
-    @geocoding ||= GeocodingEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.geocoding instead.
+  # Canonical facade: client.Geocoding.list / client.Geocoding.load({ "id" => ... })
   def Geocoding(data = nil)
     require_relative 'entity/geocoding_entity'
     GeocodingEntity.new(self, data)

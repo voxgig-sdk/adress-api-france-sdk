@@ -89,7 +89,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## BatchGeocodingEntity
 
 ```php
-$batch_geocoding = $client->batch_geocoding();
+$batch_geocoding = $client->BatchGeocoding();
 ```
 
 ### Operations
@@ -99,7 +99,7 @@ $batch_geocoding = $client->batch_geocoding();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->batch_geocoding()->create([
+$result = $client->BatchGeocoding()->create([
 ]);
 ```
 
@@ -136,7 +136,7 @@ Return the entity name.
 ## GeocodingEntity
 
 ```php
-$geocoding = $client->geocoding();
+$geocoding = $client->Geocoding();
 ```
 
 ### Fields
@@ -154,7 +154,7 @@ $geocoding = $client->geocoding();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->geocoding()->list([]);
+$results = $client->Geocoding()->list([]);
 ```
 
 ### Common Methods
