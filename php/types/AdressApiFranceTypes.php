@@ -17,7 +17,7 @@ class BatchGeocoding
 {
 }
 
-/** Match filter for BatchGeocoding#create (any subset of BatchGeocoding fields). */
+/** Request payload for BatchGeocoding#create. */
 class BatchGeocodingCreateData
 {
 }
@@ -30,7 +30,7 @@ class Geocoding
     public ?string $type = null;
 }
 
-/** Match filter for Geocoding#list (any subset of Geocoding fields). */
+/** Request payload for Geocoding#list. */
 class GeocodingListMatch
 {
     public ?array $geometry = null;

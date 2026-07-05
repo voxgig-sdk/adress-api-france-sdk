@@ -8,7 +8,8 @@
 export interface BatchGeocoding {
 }
 
-export type BatchGeocodingCreateData = Partial<BatchGeocoding>
+export interface BatchGeocodingCreateData {
+}
 
 export interface Geocoding {
   geometry?: Record<string, any>
@@ -16,5 +17,9 @@ export interface Geocoding {
   type?: string
 }
 
-export type GeocodingListMatch = Partial<Geocoding>
+export interface GeocodingListMatch {
+  geometry?: Record<string, any>
+  property?: Record<string, any>
+  type?: string
+}
 

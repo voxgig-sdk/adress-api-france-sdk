@@ -221,13 +221,13 @@ class AdressApiFranceSDK:
 
 
     def BatchGeocoding(self, data=None) -> "BatchGeocodingEntity":
-        """Entity factory: client.BatchGeocoding().list({}) / client.BatchGeocoding().load({"id": ...})."""
+        """Entity factory: client.BatchGeocoding().list() / client.BatchGeocoding().load({"id": ...})."""
         from entity.batch_geocoding_entity import BatchGeocodingEntity
         return BatchGeocodingEntity(self, data)
 
 
     def Geocoding(self, data=None) -> "GeocodingEntity":
-        """Entity factory: client.Geocoding().list({}) / client.Geocoding().load({"id": ...})."""
+        """Entity factory: client.Geocoding().list() / client.Geocoding().load({"id": ...})."""
         from entity.geocoding_entity import GeocodingEntity
         return GeocodingEntity(self, data)
 

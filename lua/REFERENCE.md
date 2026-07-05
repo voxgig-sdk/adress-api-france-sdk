@@ -141,9 +141,9 @@ local geocoding = client:Geocoding(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `geometry` | ``$OBJECT`` | No |  |
-| `property` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `geometry` | `table` | No |  |
+| `property` | `table` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 

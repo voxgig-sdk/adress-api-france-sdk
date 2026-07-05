@@ -16,6 +16,9 @@
 ---@field type? string
 
 ---@class GeocodingListMatch
+---@field geometry? table
+---@field property? table
+---@field type? string
 
 local M = {}
 

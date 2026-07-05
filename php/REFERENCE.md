@@ -8,7 +8,7 @@ Complete API reference for the AdressApiFrance PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/adress-api-france_sdk.php';
+require_once __DIR__ . '/adressapifrance_sdk.php';
 
 $client = new AdressApiFranceSDK($options);
 ```
@@ -49,11 +49,11 @@ Create a new `BatchGeocodingEntity` instance. Pass `null` for no initial data.
 
 Create a new `GeocodingEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): AdressApiFranceUtility`
 
 Return a copy of the SDK utility object.
 
@@ -105,19 +105,19 @@ $result = $client->BatchGeocoding()->create([
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -126,7 +126,7 @@ Set the entity match criteria.
 Create a new `BatchGeocodingEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -143,35 +143,35 @@ $geocoding = $client->Geocoding();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `geometry` | ``$OBJECT`` | No |  |
-| `property` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `geometry` | `array` | No |  |
+| `property` | `array` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Geocoding()->list([]);
+$results = $client->Geocoding()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -180,7 +180,7 @@ Set the entity match criteria.
 Create a new `GeocodingEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

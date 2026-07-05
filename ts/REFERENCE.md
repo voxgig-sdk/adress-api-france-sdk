@@ -173,9 +173,9 @@ const geocoding = client.Geocoding()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `geometry` | ``$OBJECT`` | No |  |
-| `property` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `geometry` | `Record<string, any>` | No |  |
+| `property` | `Record<string, any>` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 

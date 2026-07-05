@@ -8,7 +8,7 @@ Complete API reference for the AdressApiFrance Python SDK.
 ### Constructor
 
 ```python
-from adress-api-france_sdk import AdressApiFranceSDK
+from adressapifrance_sdk import AdressApiFranceSDK
 
 client = AdressApiFranceSDK(options)
 ```
@@ -137,18 +137,18 @@ geocoding = client.Geocoding()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `geometry` | ``$OBJECT`` | No |  |
-| `property` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `geometry` | `dict` | No |  |
+| `property` | `dict` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Geocoding().list({})
+results = client.Geocoding().list()
 for geocoding in results:
     print(geocoding)
 ```

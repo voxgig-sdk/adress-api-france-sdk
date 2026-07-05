@@ -8,7 +8,7 @@ Complete API reference for the AdressApiFrance Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'adress-api-france_sdk'
+require_relative 'AdressApiFrance_sdk'
 
 client = AdressApiFranceSDK.new(options)
 ```
@@ -144,18 +144,18 @@ geocoding = client.Geocoding
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `geometry` | ``$OBJECT`` | No |  |
-| `property` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `geometry` | `Hash` | No |  |
+| `property` | `Hash` | No |  |
+| `type` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Geocoding.list(nil)
+results = client.Geocoding.list
 ```
 
 ### Common Methods

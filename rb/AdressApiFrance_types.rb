@@ -12,7 +12,7 @@
 class BatchGeocoding
 end
 
-# Match filter for BatchGeocoding#create (any subset of BatchGeocoding fields).
+# Request payload for BatchGeocoding#create.
 class BatchGeocodingCreateData
 end
 
@@ -33,7 +33,7 @@ Geocoding = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Geocoding#list (any subset of Geocoding fields).
+# Request payload for Geocoding#list.
 #
 # @!attribute [rw] geometry
 #   @return [Hash, nil]

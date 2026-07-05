@@ -16,9 +16,6 @@ go build -o adress-api-france-cli ./...
 
 ```sh
 # One-shot: arguments form a single AQL expression
-./adress-api-france-cli list batch_geocoding
-./adress-api-france-cli load 1 batch_geocoding
-./adress-api-france-cli load '{id:1}' batch_geocoding
 
 # REPL
 ./adress-api-france-cli
@@ -29,8 +26,6 @@ go build -o adress-api-france-cli ./...
 | Word     | Signatures                                   | Description                |
 |----------|----------------------------------------------|----------------------------|
 | `list`   | `[entity]` · `[query entity]`                | List records               |
-| `load`   | `[entity]` · `[query entity]`                | Load a single record       |
-| `update` | `[entity]` · `[query entity]`                | Update a record            |
 
 `query` is either a Map (`{id:1}`) or a Scalar (`1`, treated as `{id:1}`).
 `entity` is one of the SDK's entity names (auto-quoted as an atom).

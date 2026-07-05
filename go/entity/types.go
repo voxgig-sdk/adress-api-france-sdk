@@ -12,8 +12,7 @@ import "encoding/json"
 type BatchGeocoding struct {
 }
 
-// BatchGeocodingCreateData mirrors the batch_geocoding fields as an all-optional match
-// filter (Go analog of Partial<BatchGeocoding>).
+// BatchGeocodingCreateData is the typed request payload for BatchGeocoding.CreateTyped.
 type BatchGeocodingCreateData struct {
 }
 
@@ -24,8 +23,7 @@ type Geocoding struct {
 	Type *string `json:"type,omitempty"`
 }
 
-// GeocodingListMatch mirrors the geocoding fields as an all-optional match
-// filter (Go analog of Partial<Geocoding>).
+// GeocodingListMatch is the typed request payload for Geocoding.ListTyped.
 type GeocodingListMatch struct {
 	Geometry *map[string]any `json:"geometry,omitempty"`
 	Property *map[string]any `json:"property,omitempty"`

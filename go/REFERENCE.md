@@ -142,9 +142,9 @@ geocoding := client.Geocoding(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `geometry` | ``$OBJECT`` | No |  |
-| `property` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `geometry` | `map[string]any` | No |  |
+| `property` | `map[string]any` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
