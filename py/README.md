@@ -51,10 +51,10 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    batchgeocoding = client.BatchGeocoding().create({  })
-    print(batchgeocoding)
+    geocodings = client.Geocoding().list()
+    print(geocodings)
 except Exception as err:
-    print(f"create failed: {err}")
+    print(f"list failed: {err}")
 ```
 
 `direct()` does **not** raise — it returns the result envelope. Branch
@@ -119,8 +119,8 @@ Create a mock client for unit testing — no server required:
 client = AdressApiFranceSDK.test()
 
 # Entity ops return the bare record and raise on error.
-batchgeocoding = client.BatchGeocoding().create({})
-# batchgeocoding contains the mock response record
+geocoding = client.Geocoding().list()
+# geocoding contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -374,15 +374,15 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `create`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-batchgeocoding = client.BatchGeocoding()
-batchgeocoding.create({  })
+geocoding = client.Geocoding()
+geocoding.list()
 
-# batchgeocoding.data_get() now returns the batchgeocoding data from the last create
-# batchgeocoding.match_get() returns the last match criteria
+# geocoding.data_get() now returns the geocoding data from the last list
+# geocoding.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

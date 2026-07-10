@@ -94,7 +94,8 @@ same parameters as `Direct()`.
 ## BatchGeocodingEntity
 
 ```go
-batch_geocoding := client.BatchGeocoding(nil)
+batchGeocoding := client.BatchGeocoding(nil)
+fmt.Println(batchGeocoding.GetName()) // "batch_geocoding"
 ```
 
 ### Operations
@@ -106,6 +107,10 @@ Create a new entity with the given data.
 ```go
 result, err := client.BatchGeocoding(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -136,6 +141,7 @@ Return the entity name.
 
 ```go
 geocoding := client.Geocoding(nil)
+fmt.Println(geocoding.GetName()) // "geocoding"
 ```
 
 ### Fields
@@ -154,6 +160,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Geocoding(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

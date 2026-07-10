@@ -49,7 +49,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local batchgeocoding, err = client:BatchGeocoding():create({  })
+local geocodings, err = client:Geocoding():list()
 if err then error(err) end
 ```
 
@@ -107,7 +107,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:BatchGeocoding():create({  })
+local result, err = client:Geocoding():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -366,15 +366,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `create`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local batchgeocoding = client:BatchGeocoding()
-batchgeocoding:create({  })
+local geocoding = client:Geocoding()
+geocoding:list()
 
--- batchgeocoding:data_get() now returns the batchgeocoding data from the last create
--- batchgeocoding:match_get() returns the last match criteria
+-- geocoding:data_get() now returns the geocoding data from the last list
+-- geocoding:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

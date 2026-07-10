@@ -47,7 +47,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $batchgeocoding = $client->BatchGeocoding()->create([]);
+    $geocodings = $client->Geocoding()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -120,8 +120,8 @@ Create a mock client for unit testing — no server required:
 $client = AdressApiFranceSDK::test();
 
 // Entity ops return the bare mock record (throws on error).
-$batchgeocoding = $client->BatchGeocoding()->create([]);
-print_r($batchgeocoding);
+$geocoding = $client->Geocoding()->list();
+print_r($geocoding);
 ```
 
 ### Use a custom fetch function
@@ -380,15 +380,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `create`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$batchgeocoding = $client->BatchGeocoding();
-$batchgeocoding->create([]);
+$geocoding = $client->Geocoding();
+$geocoding->list();
 
-// $batchgeocoding->data_get() now returns the batchgeocoding data from the last create
-// $batchgeocoding->match_get() returns the last match criteria
+// $geocoding->data_get() now returns the geocoding data from the last list
+// $geocoding->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -50,7 +50,7 @@ import (
 func main() {
     client := sdk.New()
 
-    // Create a batchgeocoding.
+    // Create a batchGeocoding.
     created, err := client.BatchGeocoding(nil).Create(map[string]any{}, nil)
     if err != nil {
         panic(err)
@@ -66,12 +66,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-batchgeocoding, err := client.BatchGeocoding(nil).Create(map[string]any{}, nil)
+geocodings, err := client.Geocoding(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = batchgeocoding
+_ = geocodings
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-batchgeocoding, err := client.BatchGeocoding(nil).Create(
-    map[string]any{}, nil,
+geocoding, err := client.Geocoding(nil).List(
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(batchgeocoding) // the returned mock data
+fmt.Println(geocoding) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -248,9 +248,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    batchgeocoding, err := client.BatchGeocoding(nil).Create(map[string]any{/* fields */}, nil)
+    batchGeocoding, err := client.BatchGeocoding(nil).Create(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // batchgeocoding is the returned record
+    // batchGeocoding is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -285,7 +285,7 @@ API path: `/search`
 
 ### BatchGeocoding
 
-Create an instance: `batch_geocoding := client.BatchGeocoding(nil)`
+Create an instance: `batchGeocoding := client.BatchGeocoding(nil)`
 
 #### Operations
 
@@ -298,6 +298,10 @@ Create an instance: `batch_geocoding := client.BatchGeocoding(nil)`
 ```go
 result, err := client.BatchGeocoding(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
@@ -399,15 +403,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Create`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-batchgeocoding := client.BatchGeocoding(nil)
-batchgeocoding.Create(map[string]any{}, nil)
+geocoding := client.Geocoding(nil)
+geocoding.List(nil, nil)
 
-// batchgeocoding.Data() now returns the batchgeocoding data from the last create
-// batchgeocoding.Match() returns the last match criteria
+// geocoding.Data() now returns the geocoding data from the last list
+// geocoding.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

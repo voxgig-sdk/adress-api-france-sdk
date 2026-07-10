@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -403,14 +400,17 @@
           "url": "https://adresse.data.gouv.fr/api-doc/adresse"
         },
         "description": "Official French address validation service. It provides endpoints for both forward and reverse geocoding, as well as the ability to perform batch geocoding from CSV files.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://api-adresse.data.gouv.fr"
           }
         ],
+        "summary": "Official French address validation service.",
         "title": "French Address API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://adresse.data.gouv.fr/api-doc/adresse"
       },
       "option": {},
       "target": {
@@ -463,6 +463,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -513,6 +516,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

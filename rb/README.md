@@ -45,9 +45,9 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  batchgeocoding = client.BatchGeocoding.create({  })
+  geocodings = client.Geocoding.list()
 rescue => err
-  warn "create failed: #{err}"
+  warn "list failed: #{err}"
 end
 ```
 
@@ -114,8 +114,8 @@ Create a mock client for unit testing — no server required:
 client = AdressApiFranceSDK.test
 
 # Entity ops return the bare mock record (raises on error).
-batchgeocoding = client.BatchGeocoding.create({  })
-puts batchgeocoding
+geocoding = client.Geocoding.list()
+puts geocoding
 ```
 
 ### Use a custom fetch function
@@ -370,15 +370,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `create`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-batchgeocoding = client.BatchGeocoding
-batchgeocoding.create({  })
+geocoding = client.Geocoding
+geocoding.list()
 
-# batchgeocoding.data_get now returns the batchgeocoding data from the last create
-# batchgeocoding.match_get returns the last match criteria
+# geocoding.data_get now returns the geocoding data from the last list
+# geocoding.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

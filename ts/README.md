@@ -48,10 +48,10 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const batchgeocoding = await client.BatchGeocoding().create({  })
-  console.log(batchgeocoding)
+  const geocodings = await client.Geocoding().list()
+  console.log(geocodings)
 } catch (err) {
-  console.error('create failed:', err)
+  console.error('list failed:', err)
 }
 ```
 
@@ -115,9 +115,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = AdressApiFranceSDK.test()
 
-const batchgeocoding = await client.BatchGeocoding().create({  })
-// batchgeocoding is a bare entity populated with mock response data
-console.log(batchgeocoding)
+const geocoding = await client.Geocoding().list()
+// geocoding is a bare entity populated with mock response data
+console.log(geocoding)
 ```
 
 You can also use the instance method:
@@ -132,10 +132,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.BatchGeocoding()
+const entity = client.Geocoding()
 
 // First call runs the operation and stores its result
-await entity.create({  })
+await entity.list()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -412,16 +412,16 @@ import { AdressApiFranceSDK } from '@voxgig-sdk/adress-api-france'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `create`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const batchgeocoding = client.BatchGeocoding()
-await batchgeocoding.create({  })
+const geocoding = client.Geocoding()
+await geocoding.list()
 
-// batchgeocoding.data() now returns the batchgeocoding data from the last `create`
-// batchgeocoding.match() returns the last match criteria
+// geocoding.data() now returns the geocoding data from the last `list`
+// geocoding.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

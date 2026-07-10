@@ -16,9 +16,9 @@ main: {
           url: "https://api-adresse.data.gouv.fr"
         }
       ]
+      summary: "Official French address validation service."
       title: "French Address API"
       version: "1.0.0"
+      website: "https://adresse.data.gouv.fr/api-doc/adresse"
     }
   }
-}
-
