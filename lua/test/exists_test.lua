@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- AdressApiFrance SDK exists test
 
 local sdk = require("adress-api-france_sdk")
 
