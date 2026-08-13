@@ -62,8 +62,8 @@ function makeCtrl(explain: boolean) {
 // Overrides configuration values with environment variables if available
 function envOverride(m: Record<string, any>) {
   if (
-    'TRUE' === process.env.ADRESSAPIFRANCE_TEST_LIVE ||
-    'TRUE' === process.env.ADRESSAPIFRANCE_TEST_OVERRIDE
+    'TRUE' === process.env.ADRESS_API_FRANCE_TEST_LIVE ||
+    'TRUE' === process.env.ADRESS_API_FRANCE_TEST_OVERRIDE
   ) {
     Object.entries(m).map(n => {
       let envval = process.env[n[0]]
@@ -74,7 +74,7 @@ function envOverride(m: Record<string, any>) {
     })
   }
 
-  m.ADRESSAPIFRANCE_TEST_EXPLAIN = process.env.ADRESSAPIFRANCE_TEST_EXPLAIN || m.ADRESSAPIFRANCE_TEST_EXPLAIN
+  m.ADRESS_API_FRANCE_TEST_EXPLAIN = process.env.ADRESS_API_FRANCE_TEST_EXPLAIN || m.ADRESS_API_FRANCE_TEST_EXPLAIN
 
   return m
 }

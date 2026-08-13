@@ -21,14 +21,14 @@ end
 # @!attribute [rw] geometry
 #   @return [Hash, nil]
 #
-# @!attribute [rw] property
+# @!attribute [rw] properties
 #   @return [Hash, nil]
 #
 # @!attribute [rw] type
 #   @return [String, nil]
 Geocoding = Struct.new(
   :geometry,
-  :property,
+  :properties,
   :type,
   keyword_init: true
 )
@@ -38,14 +38,14 @@ Geocoding = Struct.new(
 # @!attribute [rw] geometry
 #   @return [Hash, nil]
 #
-# @!attribute [rw] property
+# @!attribute [rw] properties
 #   @return [Hash, nil]
 #
 # @!attribute [rw] type
 #   @return [String, nil]
 GeocodingListMatch = Struct.new(
   :geometry,
-  :property,
+  :properties,
   :type,
   keyword_init: true
 )

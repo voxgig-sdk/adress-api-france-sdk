@@ -142,7 +142,7 @@ local geocoding = client:Geocoding(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `geometry` | `table` | No |  |
-| `property` | `table` | No |  |
+| `properties` | `table` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations

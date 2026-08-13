@@ -33,7 +33,7 @@ client = AdressApiFranceSDK.new
 ### 4. Create, update, and remove
 
 ```ruby
-# create returns the bare created BatchGeocoding record.
+# create returns the ENTITY — call data_get for the created BatchGeocoding record.
 created = client.BatchGeocoding.create({  })
 
 ```
@@ -113,7 +113,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = AdressApiFranceSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 geocoding = client.Geocoding.list()
 puts geocoding
 ```
@@ -242,7 +243,7 @@ API path: `/reverse/csv`
 | Field | Description |
 | --- | --- |
 | `geometry` |  |
-| `property` |  |
+| `properties` |  |
 | `type` |  |
 
 Operations: List.
@@ -287,7 +288,7 @@ Create an instance: `geocoding = client.Geocoding`
 | Field | Type | Description |
 | --- | --- | --- |
 | `geometry` | `Hash` |  |
-| `property` | `Hash` |  |
+| `properties` | `Hash` |  |
 | `type` | `String` |  |
 
 #### Example: List

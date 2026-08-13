@@ -26,8 +26,8 @@ import {
 describe('BatchGeocodingEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ADRESSAPIFRANCE_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ADRESSAPIFRANCE_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ADRESS_API_FRANCE_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ADRESS_API_FRANCE_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = AdressApiFranceSDK.test()
@@ -62,7 +62,7 @@ describe('BatchGeocodingEntity', async () => {
     const batch_geocoding_ref01_ent = client.BatchGeocoding()
     let batch_geocoding_ref01_data = setup.data.new.batch_geocoding['batch_geocoding_ref01']
 
-    batch_geocoding_ref01_data = await batch_geocoding_ref01_ent.create(batch_geocoding_ref01_data)
+    batch_geocoding_ref01_data = (await batch_geocoding_ref01_ent.create(batch_geocoding_ref01_data)).data()
     assert(null != batch_geocoding_ref01_data)
 
 

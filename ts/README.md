@@ -36,7 +36,7 @@ const client = new AdressApiFranceSDK()
 ### 4. Create, update, and remove
 
 ```ts
-// Create — returns the created BatchGeocoding
+// Create — returns the created BatchGeocoding ENTITY (.data() for the record)
 const created = await client.BatchGeocoding().create({})
 
 ```
@@ -116,7 +116,8 @@ Create a mock client for unit testing — no server required:
 const client = AdressApiFranceSDK.test()
 
 const geocoding = await client.Geocoding().list()
-// geocoding is a bare entity populated with mock response data
+// geocoding is the entity, populated with mock response data
+// — call geocoding.data() for the record itself
 console.log(geocoding)
 ```
 
@@ -293,7 +294,7 @@ API path: `/reverse/csv`
 | Field | Description |
 | --- | --- |
 | `geometry` |  |
-| `property` |  |
+| `properties` |  |
 | `type` |  |
 
 Operations: list.
@@ -338,7 +339,7 @@ Create an instance: `const geocoding = client.Geocoding()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `geometry` | `Record<string, any>` |  |
-| `property` | `Record<string, any>` |  |
+| `properties` | `Record<string, any>` |  |
 | `type` | `string` |  |
 
 #### Example: List

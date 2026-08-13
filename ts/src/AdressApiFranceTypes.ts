@@ -13,13 +13,13 @@ export interface BatchGeocodingCreateData {
 
 export interface Geocoding {
   geometry?: Record<string, any>
-  property?: Record<string, any>
+  properties?: Record<string, any>
   type?: string
 }
 
 export interface GeocodingListMatch {
   geometry?: Record<string, any>
-  property?: Record<string, any>
+  properties?: Record<string, any>
   type?: string
 }
 

@@ -12,12 +12,12 @@
 
 ---@class Geocoding
 ---@field geometry? table
----@field property? table
+---@field properties? table
 ---@field type? string
 
 ---@class GeocodingListMatch
 ---@field geometry? table
----@field property? table
+---@field properties? table
 ---@field type? string
 
 local M = {}

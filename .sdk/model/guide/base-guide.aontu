@@ -17,9 +17,11 @@ guide: {
   entity: geocoding: {
     path: "/reverse": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.features`")|top
     }
     path: "/search": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.features`")|top
     }
   }
 

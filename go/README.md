@@ -271,7 +271,7 @@ API path: `/reverse/csv`
 | Field | Description |
 | --- | --- |
 | `"geometry"` |  |
-| `"property"` |  |
+| `"properties"` |  |
 | `"type"` |  |
 
 Operations: List.
@@ -320,7 +320,7 @@ Create an instance: `geocoding := client.Geocoding(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `geometry` | `map[string]any` |  |
-| `property` | `map[string]any` |  |
+| `properties` | `map[string]any` |  |
 | `type` | `string` |  |
 
 #### Example: List

@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from adressapifrance_sdk.utility.voxgig_struct import voxgig_struct as vs
 from adressapifrance_sdk import AdressApiFranceSDK
-from core import helpers
+from adressapifrance_sdk.core import helpers
 from test import runner
 
 
@@ -58,11 +58,11 @@ def _geocoding_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "ADRESSAPIFRANCE_TEST_GEOCODING_ENTID": {},
-        "ADRESSAPIFRANCE_TEST_LIVE": "FALSE",
+        "ADRESS_API_FRANCE_TEST_GEOCODING_ENTID": {},
+        "ADRESS_API_FRANCE_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("ADRESSAPIFRANCE_TEST_LIVE") == "TRUE"
+    live = env.get("ADRESS_API_FRANCE_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

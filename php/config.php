@@ -40,6 +40,7 @@ class AdressApiFranceConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/reverse/csv',
                   'parts' => [
@@ -56,6 +57,7 @@ class AdressApiFranceConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/search/csv',
                   'parts' => [
@@ -88,7 +90,7 @@ class AdressApiFranceConfig
             ],
             [
               'active' => true,
-              'name' => 'property',
+              'name' => 'properties',
               'req' => false,
               'type' => '`$OBJECT`',
               'index$' => 1,
@@ -180,6 +182,7 @@ class AdressApiFranceConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/search',
                   'parts' => [
@@ -199,7 +202,7 @@ class AdressApiFranceConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.features`',
                   ],
                   'index$' => 0,
                 ],
@@ -235,6 +238,7 @@ class AdressApiFranceConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/reverse',
                   'parts' => [
@@ -249,7 +253,7 @@ class AdressApiFranceConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.features`',
                   ],
                   'index$' => 1,
                 ],

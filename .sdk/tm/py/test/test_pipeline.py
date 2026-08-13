@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import AdressApiFranceSDK
-from core.error import AdressApiFranceError
-from core.result import AdressApiFranceResult
-from core.response import AdressApiFranceResponse
-from core.spec import AdressApiFranceSpec
-from feature.base_feature import AdressApiFranceBaseFeature
+from projectname_sdk.core.error import AdressApiFranceError
+from projectname_sdk.core.result import AdressApiFranceResult
+from projectname_sdk.core.response import AdressApiFranceResponse
+from projectname_sdk.core.spec import AdressApiFranceSpec
+from projectname_sdk.feature.base_feature import AdressApiFranceBaseFeature
 
 
 def _client():

@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ AdressApiFranceUtility.registrar = ->(u) {
   u.prepare_params = AdressApiFranceUtilities::PrepareParams
   u.prepare_path = AdressApiFranceUtilities::PreparePath
   u.prepare_query = AdressApiFranceUtilities::PrepareQuery
+  u.graphql_body = AdressApiFranceUtilities::GraphqlBody
+  u.graphql_errors = AdressApiFranceUtilities::GraphqlErrors
   u.result_basic = AdressApiFranceUtilities::ResultBasic
   u.result_body = AdressApiFranceUtilities::ResultBody
   u.result_headers = AdressApiFranceUtilities::ResultHeaders

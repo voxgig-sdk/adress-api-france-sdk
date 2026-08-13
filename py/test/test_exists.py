@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# AdressApiFrance SDK exists test
 
 import pytest
 from adressapifrance_sdk import AdressApiFranceSDK

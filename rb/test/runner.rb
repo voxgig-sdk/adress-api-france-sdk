@@ -23,8 +23,8 @@ module AdressApiFranceTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("ADRESSAPIFRANCE_TEST_LIVE")
-    override = getenv("ADRESSAPIFRANCE_TEST_OVERRIDE")
+    live = getenv("ADRESS_API_FRANCE_TEST_LIVE")
+    override = getenv("ADRESS_API_FRANCE_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module AdressApiFranceTestRunner
       end
     end
 
-    explain = getenv("ADRESSAPIFRANCE_TEST_EXPLAIN")
-    m["ADRESSAPIFRANCE_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("ADRESS_API_FRANCE_TEST_EXPLAIN")
+    m["ADRESS_API_FRANCE_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

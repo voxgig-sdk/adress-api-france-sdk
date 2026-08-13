@@ -3,17 +3,17 @@
     "geocoding": {
       "GEOCODING00": {
         "geometry": {},
-        "property": {},
+        "properties": {},
         "type": "s20"
       },
       "GEOCODING01": {
         "geometry": {},
-        "property": {},
+        "properties": {},
         "type": "s3e"
       },
       "GEOCODING02": {
         "geometry": {},
-        "property": {},
+        "properties": {},
         "type": "s5c"
       }
     }
@@ -22,7 +22,7 @@
     "geocoding": {
       "geocoding_ref01": {
         "geometry": {},
-        "property": {},
+        "properties": {},
         "type": "s7a"
       }
     }

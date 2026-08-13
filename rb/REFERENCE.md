@@ -145,7 +145,7 @@ geocoding = client.Geocoding
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `geometry` | `Hash` | No |  |
-| `property` | `Hash` | No |  |
+| `properties` | `Hash` | No |  |
 | `type` | `String` | No |  |
 
 ### Operations

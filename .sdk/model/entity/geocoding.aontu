@@ -11,7 +11,7 @@ main: kit: entity: geocoding: {
       type: "`$OBJECT`"
     }
     {
-      name: "property"
+      name: "properties"
       req: false
       type: "`$OBJECT`"
     }
@@ -110,7 +110,7 @@ main: kit: entity: geocoding: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.features`"
           }
         }
         {
@@ -155,7 +155,7 @@ main: kit: entity: geocoding: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.features`"
           }
         }
       ]

@@ -149,7 +149,7 @@ fmt.Println(geocoding.GetName()) // "geocoding"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `geometry` | `map[string]any` | No |  |
-| `property` | `map[string]any` | No |  |
+| `properties` | `map[string]any` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations

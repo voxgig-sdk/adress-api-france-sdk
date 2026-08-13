@@ -22,3 +22,5 @@ main: {
       website: "https://adresse.data.gouv.fr/api-doc/adresse"
     }
   }
+}
+

@@ -26,7 +26,7 @@ class BatchGeocodingCreateData
 class Geocoding
 {
     public ?array $geometry = null;
-    public ?array $property = null;
+    public ?array $properties = null;
     public ?string $type = null;
 }
 
@@ -34,7 +34,7 @@ class Geocoding
 class GeocodingListMatch
 {
     public ?array $geometry = null;
-    public ?array $property = null;
+    public ?array $properties = null;
     public ?string $type = null;
 }
 

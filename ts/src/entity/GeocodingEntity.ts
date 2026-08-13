@@ -37,7 +37,7 @@ class GeocodingEntity extends AdressApiFranceEntityBase<Geocoding> {
 
 
 
-  async list(this: any, reqmatch?: GeocodingListMatch, ctrl?: Control): Promise<Geocoding[]> {
+  async list(this: any, reqmatch?: GeocodingListMatch, ctrl?: Control): Promise<GeocodingEntity[]> {
 
     const utility = this._utility
 

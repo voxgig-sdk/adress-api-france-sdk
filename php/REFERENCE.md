@@ -144,7 +144,7 @@ $geocoding = $client->Geocoding();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `geometry` | `array` | No |  |
-| `property` | `array` | No |  |
+| `properties` | `array` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations

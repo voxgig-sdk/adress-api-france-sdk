@@ -43,8 +43,8 @@ class AdressApiFranceTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('ADRESSAPIFRANCE_TEST_LIVE');
-        $override = self::getenv('ADRESSAPIFRANCE_TEST_OVERRIDE');
+        $live = self::getenv('ADRESS_API_FRANCE_TEST_LIVE');
+        $override = self::getenv('ADRESS_API_FRANCE_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class AdressApiFranceTestRunner
             }
         }
 
-        $explain = self::getenv('ADRESSAPIFRANCE_TEST_EXPLAIN');
+        $explain = self::getenv('ADRESS_API_FRANCE_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['ADRESSAPIFRANCE_TEST_EXPLAIN'] = $explain;
+            $m['ADRESS_API_FRANCE_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

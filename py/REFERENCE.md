@@ -138,7 +138,7 @@ geocoding = client.Geocoding()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `geometry` | `dict` | No |  |
-| `property` | `dict` | No |  |
+| `properties` | `dict` | No |  |
 | `type` | `str` | No |  |
 
 ### Operations

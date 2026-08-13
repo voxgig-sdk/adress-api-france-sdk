@@ -216,9 +216,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local batch_geocoding, err = client:BatchGeocoding():load()
+    local batch_geocoding, err = client:BatchGeocoding():list()
     if err then error(err) end
-    -- batch_geocoding is the loaded record
+    -- batch_geocoding is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -239,7 +239,7 @@ API path: `/reverse/csv`
 | Field | Description |
 | --- | --- |
 | `geometry` |  |
-| `property` |  |
+| `properties` |  |
 | `type` |  |
 
 Operations: List.
@@ -284,7 +284,7 @@ Create an instance: `local geocoding = client:Geocoding(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `geometry` | `table` |  |
-| `property` | `table` |  |
+| `properties` | `table` |  |
 | `type` | `string` |  |
 
 #### Example: List

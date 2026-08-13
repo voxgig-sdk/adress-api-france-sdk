@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'AdressApiFrance',
   }
 
 
@@ -66,6 +66,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/reverse/csv",
               "parts": [
@@ -82,6 +83,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/search/csv",
               "parts": [
@@ -114,7 +116,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "property",
+          "name": "properties",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 1
@@ -206,6 +208,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/search",
               "parts": [
@@ -225,7 +228,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.features`"
               },
               "index$": 0
             },
@@ -261,6 +264,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/reverse",
               "parts": [
@@ -275,7 +279,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.features`"
               },
               "index$": 1
             }

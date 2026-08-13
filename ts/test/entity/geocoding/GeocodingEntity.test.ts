@@ -26,8 +26,8 @@ import {
 describe('GeocodingEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ADRESSAPIFRANCE_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ADRESSAPIFRANCE_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ADRESS_API_FRANCE_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ADRESS_API_FRANCE_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = AdressApiFranceSDK.test()
@@ -63,7 +63,7 @@ describe('GeocodingEntity', async () => {
     const geocoding_ref01_ent = client.Geocoding()
     const geocoding_ref01_match: any = {}
 
-    const geocoding_ref01_list = await geocoding_ref01_ent.list(geocoding_ref01_match)
+    const geocoding_ref01_list = (await geocoding_ref01_ent.list(geocoding_ref01_match)).map((e: any) => e.data())
 
 
   })

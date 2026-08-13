@@ -61,11 +61,11 @@ function geocoding_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["ADRESSAPIFRANCE_TEST_GEOCODING_ENTID"] = {},
-    ["ADRESSAPIFRANCE_TEST_LIVE"] = "FALSE",
+    ["ADRESS_API_FRANCE_TEST_GEOCODING_ENTID"] = {},
+    ["ADRESS_API_FRANCE_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["ADRESSAPIFRANCE_TEST_LIVE"] == "TRUE"
+  local live = env["ADRESS_API_FRANCE_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

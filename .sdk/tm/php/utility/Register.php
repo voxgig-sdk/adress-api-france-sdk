@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ AdressApiFranceUtility::setRegistrar(function (AdressApiFranceUtility $u): void 
     $u->prepare_params = [AdressApiFrancePrepareParams::class, 'call'];
     $u->prepare_path = [AdressApiFrancePreparePath::class, 'call'];
     $u->prepare_query = [AdressApiFrancePrepareQuery::class, 'call'];
+    $u->graphql_body = [AdressApiFranceGraphql::class, 'body'];
+    $u->graphql_errors = [AdressApiFranceGraphql::class, 'errors'];
     $u->result_basic = [AdressApiFranceResultBasic::class, 'call'];
     $u->result_body = [AdressApiFranceResultBody::class, 'call'];
     $u->result_headers = [AdressApiFranceResultHeaders::class, 'call'];

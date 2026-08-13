@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from adressapifrance_sdk.utility.voxgig_struct import voxgig_struct as vs
 from adressapifrance_sdk import AdressApiFranceSDK
-from core import helpers
+from adressapifrance_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -36,7 +36,7 @@ class TestBatchGeocodingEntity:
         # without an *_ENTID env override, those IDs hit the live API and 4xx.
         if setup.get("synthetic_only"):
             pytest.skip("live entity test uses synthetic IDs from fixture — "
-                        "set ADRESSAPIFRANCE_TEST_BATCH_GEOCODING_ENTID JSON to run live")
+                        "set ADRESS_API_FRANCE_TEST_BATCH_GEOCODING_ENTID JSON to run live")
         client = setup["client"]
 
         # CREATE
@@ -44,7 +44,7 @@ class TestBatchGeocodingEntity:
         batch_geocoding_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.batch_geocoding"), "batch_geocoding_ref01"))
 
-        batch_geocoding_ref01_data = helpers.to_map(batch_geocoding_ref01_ent.create(batch_geocoding_ref01_data, None))
+        batch_geocoding_ref01_data = helpers.to_map(runner.entity_data(batch_geocoding_ref01_ent.create(batch_geocoding_ref01_data, None)))
         assert batch_geocoding_ref01_data is not None
 
 
@@ -78,21 +78,21 @@ def _batch_geocoding_basic_setup(extra):
     # mode is on without a real override, the basic test runs against synthetic
     # IDs from the fixture and 4xx's. We surface this so the test can skip.
     _entid_env_raw = os.environ.get(
-        "ADRESSAPIFRANCE_TEST_BATCH_GEOCODING_ENTID")
+        "ADRESS_API_FRANCE_TEST_BATCH_GEOCODING_ENTID")
     _idmap_overridden = _entid_env_raw is not None and _entid_env_raw.strip().startswith("{")
 
     env = runner.env_override({
-        "ADRESSAPIFRANCE_TEST_BATCH_GEOCODING_ENTID": idmap,
-        "ADRESSAPIFRANCE_TEST_LIVE": "FALSE",
-        "ADRESSAPIFRANCE_TEST_EXPLAIN": "FALSE",
+        "ADRESS_API_FRANCE_TEST_BATCH_GEOCODING_ENTID": idmap,
+        "ADRESS_API_FRANCE_TEST_LIVE": "FALSE",
+        "ADRESS_API_FRANCE_TEST_EXPLAIN": "FALSE",
     })
 
     idmap_resolved = helpers.to_map(
-        env.get("ADRESSAPIFRANCE_TEST_BATCH_GEOCODING_ENTID"))
+        env.get("ADRESS_API_FRANCE_TEST_BATCH_GEOCODING_ENTID"))
     if idmap_resolved is None:
         idmap_resolved = helpers.to_map(idmap)
 
-    if env.get("ADRESSAPIFRANCE_TEST_LIVE") == "TRUE":
+    if env.get("ADRESS_API_FRANCE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
             },
@@ -100,13 +100,13 @@ def _batch_geocoding_basic_setup(extra):
         ])
         client = AdressApiFranceSDK(helpers.to_map(merged_opts))
 
-    _live = env.get("ADRESSAPIFRANCE_TEST_LIVE") == "TRUE"
+    _live = env.get("ADRESS_API_FRANCE_TEST_LIVE") == "TRUE"
     return {
         "client": client,
         "data": entity_data,
         "idmap": idmap_resolved,
         "env": env,
-        "explain": env.get("ADRESSAPIFRANCE_TEST_EXPLAIN") == "TRUE",
+        "explain": env.get("ADRESS_API_FRANCE_TEST_EXPLAIN") == "TRUE",
         "live": _live,
         "synthetic_only": _live and not _idmap_overridden,
         "now": int(time.time() * 1000),

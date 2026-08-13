@@ -35,6 +35,7 @@ module AdressApiFranceConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/reverse/csv",
                   "parts" => [
@@ -51,6 +52,7 @@ module AdressApiFranceConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/search/csv",
                   "parts" => [
@@ -83,7 +85,7 @@ module AdressApiFranceConfig
             },
             {
               "active" => true,
-              "name" => "property",
+              "name" => "properties",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 1,
@@ -175,6 +177,7 @@ module AdressApiFranceConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/search",
                   "parts" => [
@@ -194,7 +197,7 @@ module AdressApiFranceConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.features`",
                   },
                   "index$" => 0,
                 },
@@ -230,6 +233,7 @@ module AdressApiFranceConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/reverse",
                   "parts" => [
@@ -244,7 +248,7 @@ module AdressApiFranceConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.features`",
                   },
                   "index$" => 1,
                 },
