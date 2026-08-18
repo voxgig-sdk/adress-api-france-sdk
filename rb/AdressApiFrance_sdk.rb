@@ -28,7 +28,7 @@ class AdressApiFranceSDK
     utility = AdressApiFranceUtility.new
     @_utility = utility
 
-    config = AdressApiFranceConfig.make_config
+    config = AdressApiFranceConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

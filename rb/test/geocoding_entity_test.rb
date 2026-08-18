@@ -33,7 +33,7 @@ class GeocodingEntityTest < Minitest::Test
     assert_equal 3, seen.length
 
     # Inbound: streaming active -> yields each item from the feature.
-    cfg = AdressApiFranceConfig.make_config
+    cfg = AdressApiFranceConfig.shared_config
     if cfg["feature"].is_a?(Hash) && cfg["feature"].key?("streaming")
       sdk = AdressApiFranceSDK.test(seed, { "feature" => { "streaming" => { "active" => true } } })
       got = []

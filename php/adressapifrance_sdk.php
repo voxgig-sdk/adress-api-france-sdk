@@ -40,7 +40,7 @@ class AdressApiFranceSDK
         $utility = new AdressApiFranceUtility();
         $this->_utility = $utility;
 
-        $config = AdressApiFranceConfig::make_config();
+        $config = AdressApiFranceConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
