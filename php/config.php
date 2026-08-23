@@ -33,6 +33,9 @@ class AdressApiFranceConfig
         return [
             "main" => [
                 "name" => "AdressApiFrance",
+                "slug" => "adress-api-france",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [

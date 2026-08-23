@@ -19,6 +19,9 @@ module AdressApiFranceConfig
     {
       "main" => {
         "name" => "AdressApiFrance",
+        "slug" => "adress-api-france",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
