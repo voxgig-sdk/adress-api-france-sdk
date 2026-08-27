@@ -29,8 +29,13 @@ type Geocoding struct {
 
 // GeocodingListMatch is the typed request payload for Geocoding.ListTyped.
 type GeocodingListMatch struct {
-	Geometry *map[string]any `json:"geometry,omitempty"`
-	Properties *map[string]any `json:"properties,omitempty"`
+	Autocomplete *int `json:"autocomplete,omitempty"`
+	Citycode *string `json:"citycode,omitempty"`
+	Lat *float64 `json:"lat,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Lon *float64 `json:"lon,omitempty"`
+	Postcode *string `json:"postcode,omitempty"`
+	Q string `json:"q"`
 	Type *string `json:"type,omitempty"`
 }
 

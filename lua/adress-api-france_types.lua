@@ -16,8 +16,13 @@
 ---@field type? string
 
 ---@class GeocodingListMatch
----@field geometry? table
----@field properties? table
+---@field autocomplete? number
+---@field citycode? string
+---@field lat? number
+---@field limit? number
+---@field lon? number
+---@field postcode? string
+---@field q string
 ---@field type? string
 
 local M = {}

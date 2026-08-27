@@ -35,17 +35,37 @@ Geocoding = Struct.new(
 
 # Request payload for Geocoding#list.
 #
-# @!attribute [rw] geometry
-#   @return [Hash, nil]
+# @!attribute [rw] autocomplete
+#   @return [Integer, nil]
 #
-# @!attribute [rw] properties
-#   @return [Hash, nil]
+# @!attribute [rw] citycode
+#   @return [String, nil]
+#
+# @!attribute [rw] lat
+#   @return [Float, nil]
+#
+# @!attribute [rw] limit
+#   @return [Integer, nil]
+#
+# @!attribute [rw] lon
+#   @return [Float, nil]
+#
+# @!attribute [rw] postcode
+#   @return [String, nil]
+#
+# @!attribute [rw] q
+#   @return [String]
 #
 # @!attribute [rw] type
 #   @return [String, nil]
 GeocodingListMatch = Struct.new(
-  :geometry,
-  :properties,
+  :autocomplete,
+  :citycode,
+  :lat,
+  :limit,
+  :lon,
+  :postcode,
+  :q,
   :type,
   keyword_init: true
 )

@@ -18,8 +18,13 @@ export interface Geocoding {
 }
 
 export interface GeocodingListMatch {
-  geometry?: Record<string, any>
-  properties?: Record<string, any>
+  autocomplete?: number
+  citycode?: string
+  lat?: number
+  limit?: number
+  lon?: number
+  postcode?: string
+  q: string
   type?: string
 }
 

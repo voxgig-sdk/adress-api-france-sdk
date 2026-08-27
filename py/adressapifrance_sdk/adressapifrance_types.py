@@ -30,7 +30,15 @@ class Geocoding(TypedDict, total=False):
     type: str
 
 
-class GeocodingListMatch(TypedDict, total=False):
-    geometry: dict
-    properties: dict
+class GeocodingListMatchRequired(TypedDict):
+    q: str
+
+
+class GeocodingListMatch(GeocodingListMatchRequired, total=False):
+    autocomplete: int
+    citycode: str
+    lat: float
+    limit: int
+    lon: float
+    postcode: str
     type: str

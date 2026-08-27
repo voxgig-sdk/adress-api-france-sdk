@@ -33,8 +33,13 @@ class Geocoding
 /** Request payload for Geocoding#list. */
 class GeocodingListMatch
 {
-    public ?array $geometry = null;
-    public ?array $properties = null;
+    public ?int $autocomplete = null;
+    public ?string $citycode = null;
+    public ?float $lat = null;
+    public ?int $limit = null;
+    public ?float $lon = null;
+    public ?string $postcode = null;
+    public string $q;
     public ?string $type = null;
 }
 
