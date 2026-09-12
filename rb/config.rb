@@ -55,30 +55,46 @@ module AdressApiFranceConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/reverse/csv",
-                  "parts" => [
-                    "reverse",
-                    "csv",
+                  "segments" => [
+                    {
+                      "lit" => "reverse",
+                    },
+                    {
+                      "lit" => "csv",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "reverse",
+                    "csv",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/search/csv",
-                  "parts" => [
-                    "search",
-                    "csv",
+                  "segments" => [
+                    {
+                      "lit" => "search",
+                    },
+                    {
+                      "lit" => "csv",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "search",
+                    "csv",
+                  ],
                 },
               ],
             },
@@ -168,8 +184,10 @@ module AdressApiFranceConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/search",
-                  "parts" => [
-                    "search",
+                  "segments" => [
+                    {
+                      "lit" => "search",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -187,6 +205,9 @@ module AdressApiFranceConfig
                     "req" => "`reqdata`",
                     "res" => "`body.features`",
                   },
+                  "parts" => [
+                    "search",
+                  ],
                 },
                 {
                   "args" => {
@@ -218,8 +239,10 @@ module AdressApiFranceConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/reverse",
-                  "parts" => [
-                    "reverse",
+                  "segments" => [
+                    {
+                      "lit" => "reverse",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -232,6 +255,9 @@ module AdressApiFranceConfig
                     "req" => "`reqdata`",
                     "res" => "`body.features`",
                   },
+                  "parts" => [
+                    "reverse",
+                  ],
                 },
               ],
             },

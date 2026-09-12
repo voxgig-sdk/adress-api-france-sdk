@@ -93,8 +93,10 @@ main: kit: entity: geocoding: {
           }
           method: "GET"
           orig: "/search"
-          parts: [
-            "search"
+          segments: [
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -143,8 +145,10 @@ main: kit: entity: geocoding: {
           }
           method: "GET"
           orig: "/reverse"
-          parts: [
-            "reverse"
+          segments: [
+            {
+              lit: "reverse"
+            }
           ]
           select: {
             exist: [

@@ -12,9 +12,13 @@ main: kit: entity: batch_geocoding: {
         {
           method: "POST"
           orig: "/reverse/csv"
-          parts: [
-            "reverse"
-            "csv"
+          segments: [
+            {
+              lit: "reverse"
+            }
+            {
+              lit: "csv"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -24,9 +28,13 @@ main: kit: entity: batch_geocoding: {
         {
           method: "POST"
           orig: "/search/csv"
-          parts: [
-            "search"
-            "csv"
+          segments: [
+            {
+              lit: "search"
+            }
+            {
+              lit: "csv"
+            }
           ]
           transform: {
             req: "`reqdata`"

@@ -43,14 +43,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/reverse/csv",
-                ["parts"] = {
-                  "reverse",
-                  "csv",
+                ["segments"] = {
+                  {
+                    ["lit"] = "reverse",
+                  },
+                  {
+                    ["lit"] = "csv",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "reverse",
+                  "csv",
                 },
               },
               {
@@ -58,14 +66,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/search/csv",
-                ["parts"] = {
-                  "search",
-                  "csv",
+                ["segments"] = {
+                  {
+                    ["lit"] = "search",
+                  },
+                  {
+                    ["lit"] = "csv",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "search",
+                  "csv",
                 },
               },
             },
@@ -156,8 +172,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/search",
-                ["parts"] = {
-                  "search",
+                ["segments"] = {
+                  {
+                    ["lit"] = "search",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -174,6 +192,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.features`",
+                },
+                ["parts"] = {
+                  "search",
                 },
               },
               {
@@ -206,8 +227,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/reverse",
-                ["parts"] = {
-                  "reverse",
+                ["segments"] = {
+                  {
+                    ["lit"] = "reverse",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -219,6 +242,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.features`",
+                },
+                ["parts"] = {
+                  "reverse",
                 },
               },
             },
