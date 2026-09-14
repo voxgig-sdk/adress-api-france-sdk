@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { AdressApiFranceSDK } from '@voxgig-sdk/adress-api-france'
+import { AdressApiFranceSDK } from '@voxgig-sdk/adress-api-france-sdk'
 
 const client = new AdressApiFranceSDK()
 ```
@@ -431,7 +431,7 @@ adress-api-france/
 Import the SDK from the package root:
 
 ```ts
-import { AdressApiFranceSDK } from '@voxgig-sdk/adress-api-france'
+import { AdressApiFranceSDK } from '@voxgig-sdk/adress-api-france-sdk'
 ```
 
 ### Entity state

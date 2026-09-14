@@ -105,7 +105,7 @@ local results, err = client:Geocoding():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/adress-api-france` | publish pending — [install from git tag](https://github.com/voxgig-sdk/adress-api-france-sdk/releases) |
+| TypeScript | `@voxgig-sdk/adress-api-france-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/adress-api-france-sdk/releases) |
 | Python | `voxgig-sdk-adress-api-france` | publish pending — [install from git tag](https://github.com/voxgig-sdk/adress-api-france-sdk/releases) |
 | PHP | `voxgig-sdk/adress-api-france` | publish pending — [install from git tag](https://github.com/voxgig-sdk/adress-api-france-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/adress-api-france-sdk/go` | `go get github.com/voxgig-sdk/adress-api-france-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Geocoding():list()
 ### TypeScript
 
 ```ts
-import { AdressApiFranceSDK } from '@voxgig-sdk/adress-api-france'
+import { AdressApiFranceSDK } from '@voxgig-sdk/adress-api-france-sdk'
 
 const client = new AdressApiFranceSDK()
 
