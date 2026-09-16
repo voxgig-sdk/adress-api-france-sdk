@@ -1,12 +1,18 @@
 # AdressApiFrance SDK feature factory
 
 from adressapifrance_sdk.feature.base_feature import AdressApiFranceBaseFeature
+from adressapifrance_sdk.feature.ratelimit_feature import AdressApiFranceRatelimitFeature
+from adressapifrance_sdk.feature.retry_feature import AdressApiFranceRetryFeature
 from adressapifrance_sdk.feature.test_feature import AdressApiFranceTestFeature
+from adressapifrance_sdk.feature.timeout_feature import AdressApiFranceTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: AdressApiFranceBaseFeature(),
+    "ratelimit": lambda: AdressApiFranceRatelimitFeature(),
+    "retry": lambda: AdressApiFranceRetryFeature(),
     "test": lambda: AdressApiFranceTestFeature(),
+    "timeout": lambda: AdressApiFranceTimeoutFeature(),
 }
 
 
