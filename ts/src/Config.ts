@@ -127,12 +127,12 @@ class Config {
 
     entity: {
       
-      batch_geocoding: {
-      },
-
-      geocoding: {
-      },
-
+        batch_geocoding: {
+        },
+  
+        geocoding: {
+        },
+  
     }
   }
 

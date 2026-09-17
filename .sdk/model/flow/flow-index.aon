@@ -1,4 +1,4 @@
 # Flows
 
-@"BasicBatchGeocodingFlow.aon"
-@"BasicGeocodingFlow.aon"
+@"./BasicBatchGeocodingFlow.aon"
+@"./BasicGeocodingFlow.aon"

@@ -1,4 +1,4 @@
 # Entity Models
 
-@"batch_geocoding.aon"
-@"geocoding.aon"
+@"./batch_geocoding.aon"
+@"./geocoding.aon"
