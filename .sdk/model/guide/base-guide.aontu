@@ -1,0 +1,31 @@
+# Generated from the API definition and overwritten on every build: do not
+# edit this file. Put customizations in the guide entry file, which includes
+# this one and overrides its defaults:
+#   guide.aontu
+
+guide: {
+  metrics: count: entity: 2
+  metrics: count: path: 4
+  metrics: count: method: 4
+
+  entity: batch_geocoding: {
+    path: "/reverse/csv": {
+      op: create: method: *POST
+    }
+    path: "/search/csv": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: geocoding: {
+    path: "/reverse": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.features`")|top
+    }
+    path: "/search": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.features`")|top
+    }
+  }
+
+}

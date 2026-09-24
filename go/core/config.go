@@ -97,7 +97,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/reverse/csv",
@@ -109,18 +108,19 @@ func MakeConfig() map[string]any {
 										"lit": "csv",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"reverse",
 									"csv",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/search/csv",
@@ -132,15 +132,17 @@ func MakeConfig() map[string]any {
 										"lit": "csv",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"search",
 									"csv",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -153,14 +155,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "geometry",
+						"title": "Geometry",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "properties",
+						"title": "Properties",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "type",
+						"title": "Type",
 						"type": "`$STRING`",
 					},
 				},
@@ -171,68 +176,76 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 1,
-											"kind": "query",
-											"name": "autocomplete",
-											"orig": "autocomplete",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "citycode",
-											"orig": "citycode",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "lat",
-											"orig": "lat",
-											"type": "`$NUMBER`",
-										},
-										map[string]any{
-											"example": 5,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "lon",
-											"orig": "lon",
-											"type": "`$NUMBER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "postcode",
-											"orig": "postcode",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "8 bd du port",
-											"kind": "query",
-											"name": "q",
-											"orig": "q",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "type",
-											"orig": "type",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/search",
 								"segments": []any{
 									map[string]any{
 										"lit": "search",
+									},
+								},
+								"parts": []any{
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.features`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "autocomplete",
+											"orig": "autocomplete",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 1,
+										},
+										map[string]any{
+											"name": "citycode",
+											"orig": "citycode",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "lat",
+											"orig": "lat",
+											"type": "`$NUMBER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 5,
+										},
+										map[string]any{
+											"name": "lon",
+											"orig": "lon",
+											"type": "`$NUMBER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "postcode",
+											"orig": "postcode",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+											"example": "8 bd du port",
+										},
+										map[string]any{
+											"name": "type",
+											"orig": "type",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -247,41 +260,8 @@ func MakeConfig() map[string]any {
 										"type",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.features`",
-								},
-								"parts": []any{
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 48.856614,
-											"kind": "query",
-											"name": "lat",
-											"orig": "lat",
-											"reqd": true,
-											"type": "`$NUMBER`",
-										},
-										map[string]any{
-											"example": 2.352222,
-											"kind": "query",
-											"name": "lon",
-											"orig": "lon",
-											"reqd": true,
-											"type": "`$NUMBER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "type",
-											"orig": "type",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/reverse",
@@ -290,19 +270,46 @@ func MakeConfig() map[string]any {
 										"lit": "reverse",
 									},
 								},
+								"parts": []any{
+									"reverse",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.features`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "lat",
+											"orig": "lat",
+											"type": "`$NUMBER`",
+											"kind": "query",
+											"reqd": true,
+											"example": 48.856614,
+										},
+										map[string]any{
+											"name": "lon",
+											"orig": "lon",
+											"type": "`$NUMBER`",
+											"kind": "query",
+											"reqd": true,
+											"example": 2.352222,
+										},
+										map[string]any{
+											"name": "type",
+											"orig": "type",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"lat",
 										"lon",
 										"type",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.features`",
-								},
-								"parts": []any{
-									"reverse",
 								},
 							},
 						},

@@ -119,7 +119,6 @@ class AdressApiFranceConfig
               'name' => 'create',
               'points' => [
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/reverse/csv',
@@ -131,18 +130,19 @@ class AdressApiFranceConfig
                       'lit' => 'csv',
                     ],
                   ],
-                  'select' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
                   'parts' => [
                     'reverse',
                     'csv',
                   ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [],
                 ],
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/search/csv',
@@ -154,15 +154,17 @@ class AdressApiFranceConfig
                       'lit' => 'csv',
                     ],
                   ],
-                  'select' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
                   'parts' => [
                     'search',
                     'csv',
                   ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [],
                 ],
               ],
             ],
@@ -175,14 +177,17 @@ class AdressApiFranceConfig
           'fields' => [
             [
               'name' => 'geometry',
+              'title' => 'Geometry',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'properties',
+              'title' => 'Properties',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'type',
+              'title' => 'Type',
               'type' => '`$STRING`',
             ],
           ],
@@ -193,68 +198,76 @@ class AdressApiFranceConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'example' => 1,
-                        'kind' => 'query',
-                        'name' => 'autocomplete',
-                        'orig' => 'autocomplete',
-                        'type' => '`$INTEGER`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'citycode',
-                        'orig' => 'citycode',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'lat',
-                        'orig' => 'lat',
-                        'type' => '`$NUMBER`',
-                      ],
-                      [
-                        'example' => 5,
-                        'kind' => 'query',
-                        'name' => 'limit',
-                        'orig' => 'limit',
-                        'type' => '`$INTEGER`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'lon',
-                        'orig' => 'lon',
-                        'type' => '`$NUMBER`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'postcode',
-                        'orig' => 'postcode',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'example' => '8 bd du port',
-                        'kind' => 'query',
-                        'name' => 'q',
-                        'orig' => 'q',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'type',
-                        'orig' => 'type',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/search',
                   'segments' => [
                     [
                       'lit' => 'search',
+                    ],
+                  ],
+                  'parts' => [
+                    'search',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body.features`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'autocomplete',
+                        'orig' => 'autocomplete',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                        'example' => 1,
+                      ],
+                      [
+                        'name' => 'citycode',
+                        'orig' => 'citycode',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'lat',
+                        'orig' => 'lat',
+                        'type' => '`$NUMBER`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'limit',
+                        'orig' => 'limit',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                        'example' => 5,
+                      ],
+                      [
+                        'name' => 'lon',
+                        'orig' => 'lon',
+                        'type' => '`$NUMBER`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'postcode',
+                        'orig' => 'postcode',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'q',
+                        'orig' => 'q',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'reqd' => true,
+                        'example' => '8 bd du port',
+                      ],
+                      [
+                        'name' => 'type',
+                        'orig' => 'type',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
                     ],
                   ],
                   'select' => [
@@ -269,41 +282,8 @@ class AdressApiFranceConfig
                       'type',
                     ],
                   ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body.features`',
-                  ],
-                  'parts' => [
-                    'search',
-                  ],
                 ],
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'example' => 48.856614,
-                        'kind' => 'query',
-                        'name' => 'lat',
-                        'orig' => 'lat',
-                        'reqd' => true,
-                        'type' => '`$NUMBER`',
-                      ],
-                      [
-                        'example' => 2.352222,
-                        'kind' => 'query',
-                        'name' => 'lon',
-                        'orig' => 'lon',
-                        'reqd' => true,
-                        'type' => '`$NUMBER`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'type',
-                        'orig' => 'type',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/reverse',
@@ -312,19 +292,46 @@ class AdressApiFranceConfig
                       'lit' => 'reverse',
                     ],
                   ],
+                  'parts' => [
+                    'reverse',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body.features`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'lat',
+                        'orig' => 'lat',
+                        'type' => '`$NUMBER`',
+                        'kind' => 'query',
+                        'reqd' => true,
+                        'example' => 48.856614,
+                      ],
+                      [
+                        'name' => 'lon',
+                        'orig' => 'lon',
+                        'type' => '`$NUMBER`',
+                        'kind' => 'query',
+                        'reqd' => true,
+                        'example' => 2.352222,
+                      ],
+                      [
+                        'name' => 'type',
+                        'orig' => 'type',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'lat',
                       'lon',
                       'type',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body.features`',
-                  ],
-                  'parts' => [
-                    'reverse',
                   ],
                 ],
               ],

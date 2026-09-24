@@ -20,134 +20,13 @@
   "requests": {
     "POST /reverse/csv": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "batchReverseGeocodeCSV",
-        "parameters": [],
-        "protocol": "http",
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "properties": {
-                  "data": {
-                    "description": "CSV file containing coordinates to reverse geocode",
-                    "format": "binary",
-                    "type": "string"
-                  },
-                  "latitude": {
-                    "description": "Name of the column containing latitude values (default: 'latitude')",
-                    "example": "latitude",
-                    "type": "string"
-                  },
-                  "longitude": {
-                    "description": "Name of the column containing longitude values (default: 'longitude')",
-                    "example": "longitude",
-                    "type": "string"
-                  },
-                  "result_columns": {
-                    "description": "Comma-separated list of result columns to include",
-                    "example": "result_label,result_distance,result_city,result_postcode",
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "data"
-                ],
-                "type": "object"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "text/csv": {
-                "schema": {
-                  "description": "CSV file with original data plus reverse geocoding results",
-                  "format": "binary",
-                  "type": "string"
-                }
-              }
-            },
-            "description": "Successful response with reverse geocoded CSV file"
-          },
-          "400": {
-            "description": "Bad request - invalid CSV format or parameters"
-          },
-          "413": {
-            "description": "Payload too large - file size exceeds limit"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     },
     "POST /search/csv": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "batchGeocodeCSV",
-        "parameters": [],
-        "protocol": "http",
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "properties": {
-                  "citycode": {
-                    "description": "Name of the column containing the INSEE city code",
-                    "type": "string"
-                  },
-                  "columns": {
-                    "description": "Name of the column containing the address (default: 'adresse')",
-                    "example": "adresse",
-                    "type": "string"
-                  },
-                  "data": {
-                    "description": "CSV file containing addresses to geocode",
-                    "format": "binary",
-                    "type": "string"
-                  },
-                  "postcode": {
-                    "description": "Name of the column containing the postal code",
-                    "type": "string"
-                  },
-                  "result_columns": {
-                    "description": "Comma-separated list of result columns to include",
-                    "example": "result_label,result_score,result_type,latitude,longitude",
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "data"
-                ],
-                "type": "object"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "text/csv": {
-                "schema": {
-                  "description": "CSV file with original data plus geocoding results",
-                  "format": "binary",
-                  "type": "string"
-                }
-              }
-            },
-            "description": "Successful response with geocoded CSV file"
-          },
-          "400": {
-            "description": "Bad request - invalid CSV format or parameters"
-          },
-          "413": {
-            "description": "Payload too large - file size exceeds limit"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     }
   }
 }

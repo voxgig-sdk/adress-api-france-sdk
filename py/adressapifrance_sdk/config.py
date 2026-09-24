@@ -122,7 +122,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {},
                 "kind": "http",
                 "method": "POST",
                 "orig": "/reverse/csv",
@@ -134,18 +133,19 @@ def make_config():
                     "lit": "csv",
                   },
                 ],
-                "select": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "reverse",
                   "csv",
                 ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {},
+                "select": {},
               },
               {
-                "args": {},
                 "kind": "http",
                 "method": "POST",
                 "orig": "/search/csv",
@@ -157,15 +157,17 @@ def make_config():
                     "lit": "csv",
                   },
                 ],
-                "select": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "search",
                   "csv",
                 ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {},
+                "select": {},
               },
             ],
           },
@@ -178,14 +180,17 @@ def make_config():
         "fields": [
           {
             "name": "geometry",
+            "title": "Geometry",
             "type": "`$OBJECT`",
           },
           {
             "name": "properties",
+            "title": "Properties",
             "type": "`$OBJECT`",
           },
           {
             "name": "type",
+            "title": "Type",
             "type": "`$STRING`",
           },
         ],
@@ -196,62 +201,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": 1,
-                      "kind": "query",
-                      "name": "autocomplete",
-                      "orig": "autocomplete",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "citycode",
-                      "orig": "citycode",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "lat",
-                      "orig": "lat",
-                      "type": "`$NUMBER`",
-                    },
-                    {
-                      "example": 5,
-                      "kind": "query",
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "lon",
-                      "orig": "lon",
-                      "type": "`$NUMBER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "postcode",
-                      "orig": "postcode",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "8 bd du port",
-                      "kind": "query",
-                      "name": "q",
-                      "orig": "q",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "type",
-                      "orig": "type",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/search",
@@ -260,6 +209,70 @@ def make_config():
                     "lit": "search",
                   },
                 ],
+                "parts": [
+                  "search",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.features`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "autocomplete",
+                      "orig": "autocomplete",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 1,
+                    },
+                    {
+                      "name": "citycode",
+                      "orig": "citycode",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "lat",
+                      "orig": "lat",
+                      "type": "`$NUMBER`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 5,
+                    },
+                    {
+                      "name": "lon",
+                      "orig": "lon",
+                      "type": "`$NUMBER`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "postcode",
+                      "orig": "postcode",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "q",
+                      "orig": "q",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "8 bd du port",
+                    },
+                    {
+                      "name": "type",
+                      "orig": "type",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "autocomplete",
@@ -272,41 +285,8 @@ def make_config():
                     "type",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.features`",
-                },
-                "parts": [
-                  "search",
-                ],
               },
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": 48.856614,
-                      "kind": "query",
-                      "name": "lat",
-                      "orig": "lat",
-                      "reqd": True,
-                      "type": "`$NUMBER`",
-                    },
-                    {
-                      "example": 2.352222,
-                      "kind": "query",
-                      "name": "lon",
-                      "orig": "lon",
-                      "reqd": True,
-                      "type": "`$NUMBER`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "type",
-                      "orig": "type",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/reverse",
@@ -315,6 +295,40 @@ def make_config():
                     "lit": "reverse",
                   },
                 ],
+                "parts": [
+                  "reverse",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.features`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "lat",
+                      "orig": "lat",
+                      "type": "`$NUMBER`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": 48.856614,
+                    },
+                    {
+                      "name": "lon",
+                      "orig": "lon",
+                      "type": "`$NUMBER`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": 2.352222,
+                    },
+                    {
+                      "name": "type",
+                      "orig": "type",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "lat",
@@ -322,13 +336,6 @@ def make_config():
                     "type",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.features`",
-                },
-                "parts": [
-                  "reverse",
-                ],
               },
             ],
           },

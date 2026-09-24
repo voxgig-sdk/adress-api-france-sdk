@@ -24,13 +24,79 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "batch_geocoding": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [],
+          "fields": {},
           "name": "batch_geocoding",
           "op": {
             "create": {
@@ -38,18 +104,19 @@
               "name": "create",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "POST /reverse/csv",
-                    "json": "{\"operationId\":\"batchReverseGeocodeCSV\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"multipart/form-data\":{\"schema\":{\"properties\":{\"data\":{\"description\":\"CSV file containing coordinates to reverse geocode\",\"format\":\"binary\",\"type\":\"string\"},\"latitude\":{\"description\":\"Name of the column containing latitude values (default: 'latitude')\",\"example\":\"latitude\",\"type\":\"string\"},\"longitude\":{\"description\":\"Name of the column containing longitude values (default: 'longitude')\",\"example\":\"longitude\",\"type\":\"string\"},\"result_columns\":{\"description\":\"Comma-separated list of result columns to include\",\"example\":\"result_label,result_distance,result_city,result_postcode\",\"type\":\"string\"}},\"required\":[\"data\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"text/csv\":{\"schema\":{\"description\":\"CSV file with original data plus reverse geocoding results\",\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successful response with reverse geocoded CSV file\"},\"400\":{\"description\":\"Bad request - invalid CSV format or parameters\"},\"413\":{\"description\":\"Payload too large - file size exceeds limit\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "POST",
-                  "orig": "/reverse/csv",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "POST",
+                  "o": "/reverse/csv",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "reverse"
                     },
@@ -57,25 +124,25 @@
                       "lit": "csv"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "POST /search/csv",
-                    "json": "{\"operationId\":\"batchGeocodeCSV\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"multipart/form-data\":{\"schema\":{\"properties\":{\"citycode\":{\"description\":\"Name of the column containing the INSEE city code\",\"type\":\"string\"},\"columns\":{\"description\":\"Name of the column containing the address (default: 'adresse')\",\"example\":\"adresse\",\"type\":\"string\"},\"data\":{\"description\":\"CSV file containing addresses to geocode\",\"format\":\"binary\",\"type\":\"string\"},\"postcode\":{\"description\":\"Name of the column containing the postal code\",\"type\":\"string\"},\"result_columns\":{\"description\":\"Comma-separated list of result columns to include\",\"example\":\"result_label,result_score,result_type,latitude,longitude\",\"type\":\"string\"}},\"required\":[\"data\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"text/csv\":{\"schema\":{\"description\":\"CSV file with original data plus geocoding results\",\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successful response with geocoded CSV file\"},\"400\":{\"description\":\"Bad request - invalid CSV format or parameters\"},\"413\":{\"description\":\"Payload too large - file size exceeds limit\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "POST",
-                  "orig": "/search/csv",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "POST",
+                  "o": "/search/csv",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "search"
                     },
@@ -83,8 +150,7 @@
                       "lit": "csv"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -101,26 +167,29 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "geometry",
-              "req": false,
-              "type": "`$OBJECT`"
+          "fields": {
+            "geometry": {
+              "a": true,
+              "h": "Geometry",
+              "n": "geometry",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "properties",
-              "req": false,
-              "type": "`$OBJECT`"
+            "properties": {
+              "a": true,
+              "h": "Properties",
+              "n": "properties",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "type",
-              "req": false,
-              "type": "`$STRING`"
+            "type": {
+              "a": true,
+              "h": "Type",
+              "n": "type",
+              "r": false,
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "geocoding",
           "op": {
             "list": {
@@ -128,93 +197,87 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /search",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": 1,
-                        "kind": "query",
-                        "name": "autocomplete",
-                        "orig": "autocomplete",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 1,
+                        "k": "query",
+                        "n": "autocomplete",
+                        "or": "autocomplete",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "citycode",
-                        "orig": "citycode",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "citycode",
+                        "or": "citycode",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "lat",
-                        "orig": "lat",
-                        "reqd": false,
-                        "type": "`$NUMBER`"
+                        "a": true,
+                        "k": "query",
+                        "n": "lat",
+                        "or": "lat",
+                        "r": false,
+                        "t": "`$NUMBER`"
                       },
                       {
-                        "active": true,
-                        "example": 5,
-                        "kind": "query",
-                        "name": "limit",
-                        "orig": "limit",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 5,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "lon",
-                        "orig": "lon",
-                        "reqd": false,
-                        "type": "`$NUMBER`"
+                        "a": true,
+                        "k": "query",
+                        "n": "lon",
+                        "or": "lon",
+                        "r": false,
+                        "t": "`$NUMBER`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "postcode",
-                        "orig": "postcode",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "postcode",
+                        "or": "postcode",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "8 bd du port",
-                        "kind": "query",
-                        "name": "q",
-                        "orig": "q",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "8 bd du port",
+                        "k": "query",
+                        "n": "q",
+                        "or": "q",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "type",
-                        "orig": "type",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "type",
+                        "or": "type",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /search",
-                    "json": "{\"operationId\":\"searchAddress\",\"parameters\":[{\"description\":\"The address to search for\",\"example\":\"8 bd du port\",\"in\":\"query\",\"name\":\"q\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Maximum number of results to return\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"default\":5,\"maximum\":20,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Enable autocomplete mode\",\"in\":\"query\",\"name\":\"autocomplete\",\"required\":false,\"schema\":{\"default\":1,\"enum\":[0,1],\"type\":\"integer\"}},{\"description\":\"Latitude for geographic priority\",\"in\":\"query\",\"name\":\"lat\",\"required\":false,\"schema\":{\"format\":\"float\",\"maximum\":90,\"minimum\":-90,\"type\":\"number\"}},{\"description\":\"Longitude for geographic priority\",\"in\":\"query\",\"name\":\"lon\",\"required\":false,\"schema\":{\"format\":\"float\",\"maximum\":180,\"minimum\":-180,\"type\":\"number\"}},{\"description\":\"Filter by type of result\",\"in\":\"query\",\"name\":\"type\",\"required\":false,\"schema\":{\"enum\":[\"housenumber\",\"street\",\"locality\",\"municipality\"],\"type\":\"string\"}},{\"description\":\"Filter by postal code\",\"in\":\"query\",\"name\":\"postcode\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by INSEE city code\",\"in\":\"query\",\"name\":\"citycode\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"attribution\":{\"example\":\"BAN\",\"type\":\"string\"},\"features\":{\"items\":{\"properties\":{\"geometry\":{\"properties\":{\"coordinates\":{\"example\":[2.290084,49.897443],\"items\":{\"type\":\"number\"},\"type\":\"array\"},\"type\":{\"example\":\"Point\",\"type\":\"string\"}},\"type\":\"object\"},\"properties\":{\"properties\":{\"city\":{\"example\":\"Amiens\",\"type\":\"string\"},\"citycode\":{\"example\":\"80021\",\"type\":\"string\"},\"context\":{\"example\":\"80, Somme, Hauts-de-France\",\"type\":\"string\"},\"housenumber\":{\"example\":\"8\",\"type\":\"string\"},\"id\":{\"example\":\"80021_6590_00008\",\"type\":\"string\"},\"importance\":{\"example\":0.6,\"type\":\"number\"},\"label\":{\"example\":\"8 Boulevard du Port 80000 Amiens\",\"type\":\"string\"},\"name\":{\"example\":\"8 Boulevard du Port\",\"type\":\"string\"},\"postcode\":{\"example\":\"80000\",\"type\":\"string\"},\"score\":{\"example\":0.49159121588068583,\"format\":\"float\",\"type\":\"number\"},\"street\":{\"example\":\"Boulevard du Port\",\"type\":\"string\"},\"type\":{\"example\":\"housenumber\",\"type\":\"string\"},\"x\":{\"example\":648952.58,\"type\":\"number\"},\"y\":{\"example\":6977867.25,\"type\":\"number\"}},\"type\":\"object\"},\"type\":{\"example\":\"Feature\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"licence\":{\"example\":\"ETALAB-2.0\",\"type\":\"string\"},\"limit\":{\"example\":5,\"type\":\"integer\"},\"query\":{\"example\":\"8 bd du port\",\"type\":\"string\"},\"type\":{\"example\":\"FeatureCollection\",\"type\":\"string\"},\"version\":{\"example\":\"draft\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response with matching addresses\"},\"400\":{\"description\":\"Bad request - invalid parameters\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/search",
-                  "segments": [
-                    {
-                      "lit": "search"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/search",
+                  "q": {
                     "exist": [
                       "autocomplete",
                       "citycode",
@@ -226,65 +289,71 @@
                       "type"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "search"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.features`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /reverse",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": 48.856614,
-                        "kind": "query",
-                        "name": "lat",
-                        "orig": "lat",
-                        "reqd": true,
-                        "type": "`$NUMBER`"
+                        "a": true,
+                        "ex": 48.856614,
+                        "k": "query",
+                        "n": "lat",
+                        "or": "lat",
+                        "r": true,
+                        "t": "`$NUMBER`"
                       },
                       {
-                        "active": true,
-                        "example": 2.352222,
-                        "kind": "query",
-                        "name": "lon",
-                        "orig": "lon",
-                        "reqd": true,
-                        "type": "`$NUMBER`"
+                        "a": true,
+                        "ex": 2.352222,
+                        "k": "query",
+                        "n": "lon",
+                        "or": "lon",
+                        "r": true,
+                        "t": "`$NUMBER`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "type",
-                        "orig": "type",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "type",
+                        "or": "type",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /reverse",
-                    "json": "{\"operationId\":\"reverseGeocode\",\"parameters\":[{\"description\":\"Latitude coordinate\",\"example\":48.856614,\"in\":\"query\",\"name\":\"lat\",\"required\":true,\"schema\":{\"format\":\"float\",\"maximum\":90,\"minimum\":-90,\"type\":\"number\"}},{\"description\":\"Longitude coordinate\",\"example\":2.352222,\"in\":\"query\",\"name\":\"lon\",\"required\":true,\"schema\":{\"format\":\"float\",\"maximum\":180,\"minimum\":-180,\"type\":\"number\"}},{\"description\":\"Filter by type of result\",\"in\":\"query\",\"name\":\"type\",\"required\":false,\"schema\":{\"enum\":[\"housenumber\",\"street\",\"locality\",\"municipality\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"attribution\":{\"example\":\"BAN\",\"type\":\"string\"},\"features\":{\"items\":{\"properties\":{\"geometry\":{\"properties\":{\"coordinates\":{\"example\":[2.352222,48.856614],\"items\":{\"type\":\"number\"},\"type\":\"array\"},\"type\":{\"example\":\"Point\",\"type\":\"string\"}},\"type\":\"object\"},\"properties\":{\"properties\":{\"city\":{\"example\":\"Paris\",\"type\":\"string\"},\"citycode\":{\"type\":\"string\"},\"context\":{\"type\":\"string\"},\"distance\":{\"description\":\"Distance in meters from the requested coordinates\",\"type\":\"integer\"},\"housenumber\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"importance\":{\"type\":\"number\"},\"label\":{\"example\":\"Musée du Louvre 75001 Paris\",\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"postcode\":{\"example\":\"75001\",\"type\":\"string\"},\"score\":{\"format\":\"float\",\"type\":\"number\"},\"street\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"x\":{\"type\":\"number\"},\"y\":{\"type\":\"number\"}},\"type\":\"object\"},\"type\":{\"example\":\"Feature\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"licence\":{\"example\":\"ETALAB-2.0\",\"type\":\"string\"},\"limit\":{\"type\":\"integer\"},\"type\":{\"example\":\"FeatureCollection\",\"type\":\"string\"},\"version\":{\"example\":\"draft\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response with address information\"},\"400\":{\"description\":\"Bad request - invalid coordinates or parameters\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/reverse",
-                  "segments": [
-                    {
-                      "lit": "reverse"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/reverse",
+                  "q": {
                     "exist": [
                       "lat",
                       "lon",
                       "type"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "reverse"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.features`"
                   }
@@ -713,15 +782,15 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "batch_geocoding_ref01"
               },
-              "match": {},
-              "op": "create",
-              "spec": [],
-              "valid": []
+              "m": {},
+              "o": "create",
+              "s": [],
+              "v": []
             }
           ]
         },
@@ -734,13 +803,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {

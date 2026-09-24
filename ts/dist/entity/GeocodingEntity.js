@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GeocodingEntity = void 0;
 const AdressApiFranceEntityBase_1 = require("../AdressApiFranceEntityBase");
-// TODO: needs Entity superclass
 class GeocodingEntity extends AdressApiFranceEntityBase_1.AdressApiFranceEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

@@ -1,0 +1,184 @@
+# Entity: geocoding
+
+main: kit: entity: geocoding: {
+
+  alias: field: {}
+
+  fields: {
+    geometry: {
+      h: "Geometry"
+      n: "geometry"
+      r: false
+      t: "`$OBJECT`"
+    }
+    properties: {
+      h: "Properties"
+      n: "properties"
+      r: false
+      t: "`$OBJECT`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  name: "geocoding"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 1
+                k: "query"
+                n: "autocomplete"
+                or: "autocomplete"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "citycode"
+                or: "citycode"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "lat"
+                or: "lat"
+                r: false
+                t: "`$NUMBER`"
+              }
+              {
+                ex: 5
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "lon"
+                or: "lon"
+                r: false
+                t: "`$NUMBER`"
+              }
+              {
+                k: "query"
+                n: "postcode"
+                or: "postcode"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "8 bd du port"
+                k: "query"
+                n: "q"
+                or: "q"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "type"
+                or: "type"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/search"
+          q: {
+            exist: [
+              "autocomplete"
+              "citycode"
+              "lat"
+              "limit"
+              "lon"
+              "postcode"
+              "q"
+              "type"
+            ]
+          }
+          s: [
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.features`"
+          }
+        }
+        {
+          co: {
+            id: "GET /reverse"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 48.856614
+                k: "query"
+                n: "lat"
+                or: "lat"
+                r: true
+                t: "`$NUMBER`"
+              }
+              {
+                ex: 2.352222
+                k: "query"
+                n: "lon"
+                or: "lon"
+                r: true
+                t: "`$NUMBER`"
+              }
+              {
+                k: "query"
+                n: "type"
+                or: "type"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/reverse"
+          q: {
+            exist: [
+              "lat"
+              "lon"
+              "type"
+            ]
+          }
+          s: [
+            {
+              lit: "reverse"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.features`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

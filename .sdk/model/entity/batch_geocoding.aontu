@@ -1,0 +1,63 @@
+# Entity: batch_geocoding
+
+main: kit: entity: batch_geocoding: {
+
+  alias: field: {}
+
+  name: "batch_geocoding"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /reverse/csv"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/reverse/csv"
+          s: [
+            {
+              lit: "reverse"
+            }
+            {
+              lit: "csv"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /search/csv"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/search/csv"
+          s: [
+            {
+              lit: "search"
+            }
+            {
+              lit: "csv"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

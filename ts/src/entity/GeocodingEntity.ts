@@ -19,7 +19,6 @@ import type {
   GeocodingListMatch,
 } from '../AdressApiFranceTypes'
 
-// TODO: needs Entity superclass
 class GeocodingEntity extends AdressApiFranceEntityBase<Geocoding> {
 
   constructor(client: AdressApiFranceSDK, entopts: any) {

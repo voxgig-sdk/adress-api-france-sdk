@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -120,7 +113,6 @@ class Config {
                     "name": "create",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/reverse/csv",
@@ -132,18 +124,19 @@ class Config {
                                     "lit": "csv"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "reverse",
+                                "csv"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "reverse",
-                                "csv"
-                            ]
+                            "args": {},
+                            "select": {}
                         },
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "POST",
                             "orig": "/search/csv",
@@ -155,15 +148,17 @@ class Config {
                                     "lit": "csv"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "search",
+                                "csv"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "search",
-                                "csv"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }
@@ -176,14 +171,17 @@ class Config {
             "fields": [
                 {
                     "name": "geometry",
+                    "title": "Geometry",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "properties",
+                    "title": "Properties",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "type",
+                    "title": "Type",
                     "type": "`$STRING`"
                 }
             ],
@@ -194,62 +192,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": 1,
-                                        "kind": "query",
-                                        "name": "autocomplete",
-                                        "orig": "autocomplete",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "citycode",
-                                        "orig": "citycode",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "lat",
-                                        "orig": "lat",
-                                        "type": "`$NUMBER`"
-                                    },
-                                    {
-                                        "example": 5,
-                                        "kind": "query",
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "lon",
-                                        "orig": "lon",
-                                        "type": "`$NUMBER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "postcode",
-                                        "orig": "postcode",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": "8 bd du port",
-                                        "kind": "query",
-                                        "name": "q",
-                                        "orig": "q",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "type",
-                                        "orig": "type",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/search",
@@ -258,6 +200,70 @@ class Config {
                                     "lit": "search"
                                 }
                             ],
+                            "parts": [
+                                "search"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.features`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "autocomplete",
+                                        "orig": "autocomplete",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 1
+                                    },
+                                    {
+                                        "name": "citycode",
+                                        "orig": "citycode",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "lat",
+                                        "orig": "lat",
+                                        "type": "`$NUMBER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 5
+                                    },
+                                    {
+                                        "name": "lon",
+                                        "orig": "lon",
+                                        "type": "`$NUMBER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "postcode",
+                                        "orig": "postcode",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "q",
+                                        "orig": "q",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "reqd": true,
+                                        "example": "8 bd du port"
+                                    },
+                                    {
+                                        "name": "type",
+                                        "orig": "type",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "autocomplete",
@@ -269,42 +275,9 @@ class Config {
                                     "q",
                                     "type"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.features`"
-                            },
-                            "parts": [
-                                "search"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": 48.856614,
-                                        "kind": "query",
-                                        "name": "lat",
-                                        "orig": "lat",
-                                        "reqd": true,
-                                        "type": "`$NUMBER`"
-                                    },
-                                    {
-                                        "example": 2.352222,
-                                        "kind": "query",
-                                        "name": "lon",
-                                        "orig": "lon",
-                                        "reqd": true,
-                                        "type": "`$NUMBER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "type",
-                                        "orig": "type",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/reverse",
@@ -313,20 +286,47 @@ class Config {
                                     "lit": "reverse"
                                 }
                             ],
+                            "parts": [
+                                "reverse"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.features`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "lat",
+                                        "orig": "lat",
+                                        "type": "`$NUMBER`",
+                                        "kind": "query",
+                                        "reqd": true,
+                                        "example": 48.856614
+                                    },
+                                    {
+                                        "name": "lon",
+                                        "orig": "lon",
+                                        "type": "`$NUMBER`",
+                                        "kind": "query",
+                                        "reqd": true,
+                                        "example": 2.352222
+                                    },
+                                    {
+                                        "name": "type",
+                                        "orig": "type",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "lat",
                                     "lon",
                                     "type"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.features`"
-                            },
-                            "parts": [
-                                "reverse"
-                            ]
+                            }
                         }
                     ]
                 }
